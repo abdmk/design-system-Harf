@@ -1,0 +1,103 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   عرض البيانات — المؤشّرات والرسوم البيانية (مشتركة بين لوحة الإدارة
+   ولوحة المصمّم ولوحة الاستوديو)
+   ───────────────────────────────────────────────────────────────────────
+   قواعد:
+   · الرقم أولاً، ثم التسمية، ثم المقارنة. لا عدّاد متحرّك — القيمة
+     الحقيقية تُكتب في HTML مباشرة، فلا يرى أحد «$0» إن تأخّر الـ JS.
+   · ألوان الفئات بالترتيب --viz-1…6. الأحمر للتمييز فقط، لأنه يُقرأ «سلبي».
+   · كل رسم له بديل نصي (aria-label + جدول مخفي) وحالات: تحميل/فارغ/خطأ.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ══ بطاقة المؤشّر (Stat) ═════════════════════════════════════════════ */
+.stat{display:flex;flex-direction:column;gap:var(--space-1);min-width:0;padding:var(--space-5);
+  background:var(--bg-surface);border:1px solid var(--border-default);border-radius:var(--radius-lg);box-shadow:var(--rim)}
+.stat__head{display:flex;align-items:center;gap:var(--space-2);color:var(--text-secondary);font-size:var(--text-sm)}
+.stat__head .icon{width:var(--icon-sm);height:var(--icon-sm);color:var(--text-tertiary)}
+.stat__head .btn{margin-inline-start:auto;margin-block:-6px}
+.stat__value{display:flex;align-items:baseline;gap:var(--space-2);flex-wrap:wrap;margin-top:var(--space-2)}
+.stat__value b{font-size:var(--num-xl);font-weight:var(--weight-semibold);line-height:var(--leading-tight);letter-spacing:var(--tracking-tight);direction:ltr;unicode-bidi:isolate}
+.stat__value small{font-size:var(--text-sm);color:var(--text-tertiary);font-weight:var(--weight-regular)}
+.stat__foot{display:flex;align-items:center;gap:var(--space-2);flex-wrap:wrap;font-size:var(--text-xs);color:var(--text-tertiary);line-height:var(--leading-heading)}
+.stat__chart{margin-top:auto;padding-top:var(--space-4);height:52px}
+.stat__chart svg{width:100%;height:100%;overflow:visible}
+.stat--zero .stat__value b{color:var(--text-tertiary)}
+.stat--compact{padding:var(--space-4)}
+
+/* شريط أعمدة مصغّر (من المراجع: تقدّم بالشرطات) */
+.ticks{display:flex;gap:3px;height:28px;margin-top:var(--space-3)}
+.ticks i{flex:1;border-radius:2px;background:var(--viz-muted)}
+.ticks i.on{background:var(--tick-color,var(--viz-1))}
+
+/* ══ بطاقة الرسم ══════════════════════════════════════════════════════ */
+.chart-card{display:flex;flex-direction:column;min-width:0;padding:var(--space-5);background:var(--bg-surface);
+  border:1px solid var(--border-default);border-radius:var(--radius-lg);box-shadow:var(--rim)}
+.chart-card .card__head{margin-bottom:var(--space-5)}
+.chart-card__summary{display:flex;align-items:baseline;gap:var(--space-3);flex-wrap:wrap;margin:calc(var(--space-2) * -1) 0 var(--space-4)}
+.chart-card__summary b{font-size:var(--num-lg);font-weight:var(--weight-semibold);letter-spacing:var(--tracking-tight);direction:ltr;unicode-bidi:isolate}
+.chart-card__summary span{font-size:var(--text-sm);color:var(--text-tertiary)}
+.chart{position:relative;flex:1;min-height:var(--chart-h,220px)}
+/* direction:ltr — وإلا انقلب text-anchor داخل SVG في الصفحة العربية */
+.chart svg{display:block;width:100%;height:100%;overflow:visible;direction:ltr}
+.chart text{font-family:var(--font-ui);font-size:12px;fill:var(--viz-axis)}
+.chart .grid line{stroke:var(--viz-grid);stroke-width:1;shape-rendering:crispEdges}
+.chart .bar{transition:opacity var(--duration-fast)}
+.chart:has(.bar:hover) .bar:not(:hover){opacity:.45}
+.chart .hit{fill:transparent;cursor:crosshair}
+.chart .cursor{stroke:var(--border-strong);stroke-dasharray:3 3}
+.chart .dot{stroke:var(--bg-surface);stroke-width:2}
+
+/* تلميح الرسم — يتبع المؤشّر */
+.chart-tip{position:absolute;z-index:var(--z-tooltip);top:0;left:0;min-width:120px;padding:var(--space-2) var(--space-3);
+  background:var(--bg-inverse);color:var(--text-inverse);border-radius:var(--radius-sm);box-shadow:var(--shadow-3);
+  font-size:var(--text-xs);line-height:1.5;pointer-events:none;opacity:0;transition:opacity var(--duration-fast);white-space:nowrap}
+.chart-tip.is-on{opacity:1}
+.chart-tip b{display:block;font-weight:var(--weight-medium);margin-bottom:2px;opacity:.72}
+.chart-tip span{display:flex;align-items:center;gap:6px}
+.chart-tip i{width:8px;height:8px;border-radius:2px;flex:0 0 auto}
+.chart-tip em{font-style:normal;margin-inline-start:auto;padding-inline-start:var(--space-3);font-weight:var(--weight-semibold);direction:ltr}
+
+/* ══ مفتاح الألوان ════════════════════════════════════════════════════ */
+.legend{display:flex;flex-wrap:wrap;gap:var(--space-2) var(--space-5);margin-top:var(--space-4);font-size:var(--text-xs);color:var(--text-secondary);list-style:none;padding:0}
+.legend li{display:inline-flex;align-items:center;gap:6px}
+.legend i{width:8px;height:8px;border-radius:2px;flex:0 0 auto;background:var(--c)}
+.legend b{color:var(--text-primary);font-weight:var(--weight-medium);direction:ltr;unicode-bidi:isolate}
+.legend--line i{height:2px;width:14px;border-radius:1px}
+
+/* ══ الكعكة ═══════════════════════════════════════════════════════════ */
+.donut{display:flex;align-items:center;gap:var(--space-6);flex-wrap:wrap}
+.donut__ring{position:relative;flex:0 0 auto;width:var(--donut,136px);height:var(--donut,136px)}
+.donut__ring svg{width:100%;height:100%;transform:rotate(-90deg)}
+.donut__ring circle{fill:none;stroke-width:14}
+.donut__center{position:absolute;inset:0;display:grid;place-content:center;text-align:center;line-height:1.2}
+.donut__center b{font-size:22px;font-weight:var(--weight-semibold);direction:ltr}
+.donut__center span{font-size:var(--text-xs);color:var(--text-tertiary)}
+.donut__list{flex:1;min-width:160px;display:flex;flex-direction:column;gap:var(--space-3);list-style:none;margin:0;padding:0}
+.donut__list li{display:flex;align-items:center;gap:var(--space-2);font-size:var(--text-sm)}
+.donut__list i{width:8px;height:8px;border-radius:2px;flex:0 0 auto;background:var(--c)}
+.donut__list b{margin-inline-start:auto;font-weight:var(--weight-semibold);direction:ltr}
+.donut__list em{font-style:normal;min-width:40px;text-align:start;font-size:var(--text-xs);color:var(--text-tertiary);direction:ltr}
+
+/* ══ شريط المكوّنات (Stacked bar) ════════════════════════════════════ */
+.split-bar{display:flex;gap:2px;height:8px;border-radius:var(--radius-pill);overflow:hidden;background:var(--bg-inset)}
+.split-bar i{display:block;height:100%;background:var(--c);min-width:2px}
+
+/* ══ قائمة الترتيب (أعلى الخطوط، الدول) ═══════════════════════════════ */
+.rank{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:var(--space-4)}
+.rank li{display:grid;grid-template-columns:20px 1fr auto;gap:6px var(--space-3);align-items:center}
+.rank__n{width:20px;height:20px;border-radius:var(--radius-xs);display:grid;place-items:center;background:var(--bg-sunken);color:var(--text-tertiary);font-size:11px;font-weight:var(--weight-medium)}
+.rank li:first-child .rank__n{background:var(--bg-inverse);color:var(--text-inverse)}
+.rank__name{min-width:0;font-size:var(--text-sm)}
+.rank__name b{display:block;font-weight:var(--weight-medium);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rank__name span{display:block;font-size:var(--text-xs);color:var(--text-tertiary)}
+.rank__val{text-align:end;font-size:var(--text-sm);font-weight:var(--weight-medium);direction:ltr}
+.rank__val small{display:block;font-size:var(--text-xs);color:var(--text-tertiary);font-weight:var(--weight-regular)}
+.rank__bar{grid-column:2/-1;height:6px;border-radius:var(--radius-pill);background:var(--bg-sunken);overflow:hidden}
+.rank__bar i{display:block;height:100%;width:var(--w);border-radius:inherit;background:var(--c,var(--viz-1))}
+
+/* ══ حالات الرسم ══════════════════════════════════════════════════════ */
+.chart-state{display:grid;place-content:center;justify-items:center;gap:var(--space-2);min-height:var(--chart-h,220px);text-align:center;
+  font-size:var(--text-sm);color:var(--text-tertiary)}
+.chart-state .icon{width:24px;height:24px}
+.chart-skeleton{display:flex;align-items:flex-end;gap:var(--space-3);height:var(--chart-h,220px);padding-top:var(--space-4)}
+.chart-skeleton .skeleton{flex:1;border-radius:6px 6px 2px 2px}

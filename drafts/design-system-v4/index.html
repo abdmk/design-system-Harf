@@ -1,0 +1,1018 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>نظام حرف — 4.0</title>
+<meta name="description" content="نظام التصميم الموحّد لمكتبة حرف: الأسس، المكوّنات، عرض البيانات، الأنماط، والقوالب.">
+<meta name="color-scheme" content="light dark">
+<link rel="stylesheet" href="src/tokens.css">
+<link rel="stylesheet" href="src/base.css">
+<link rel="stylesheet" href="src/components.css">
+<link rel="stylesheet" href="src/data-viz.css">
+<link rel="stylesheet" href="src/patterns.css">
+<link rel="stylesheet" href="docs.css">
+</head>
+<body>
+<!-- @icons -->
+
+<header class="navbar doc-top">
+  <div class="navbar__in">
+    <a class="navbar__brand" href="#intro" aria-label="نظام حرف — البداية">
+      <svg class="lockup" viewBox="0 0 1678.79 551.26" aria-hidden="true"><use href="#harf-lockup"/></svg>
+      <svg class="mark" viewBox="1127.53 0 551.26 551.26" aria-hidden="true"><use href="#harf-mark"/></svg>
+    </a>
+    <div class="doc-top__title"><span class="doc-top__sep" aria-hidden="true"></span><span class="t-hide">نظام التصميم</span><span class="badge badge--sm">v4.0</span></div>
+    <div class="navbar__actions">
+      <a class="btn btn--ghost btn--sm" href="dashboard.html"><svg class="icon" aria-hidden="true"><use href="#i-stats"/></svg><span class="t-hide">قالب اللوحة</span></a>
+      <button class="btn btn--ghost btn--icon" type="button" data-theme-toggle aria-label="تبديل الوضع الداكن" aria-pressed="false"><svg class="icon" aria-hidden="true"><use href="#i-moon"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<div class="doc">
+<nav class="doc-nav" aria-label="أقسام الدليل">
+  <div class="doc-nav__group">البداية</div>
+  <a href="#intro">نظرة عامة</a>
+  <a href="#changes">ما الجديد في 4.0</a>
+  <div class="doc-nav__group">الأسس</div>
+  <a href="#color">الألوان <small>01</small></a>
+  <a href="#type">الطباعة <small>02</small></a>
+  <a href="#space">المسافات والمقاسات <small>03</small></a>
+  <a href="#shape">الحواف والعمق <small>04</small></a>
+  <a href="#motion">الحركة <small>05</small></a>
+  <a href="#icons">الأيقونات <small>06</small></a>
+  <div class="doc-nav__group">المكوّنات</div>
+  <a href="#button">الأزرار <small>07</small></a>
+  <a href="#input">الحقول <small>08</small></a>
+  <a href="#selection">الاختيار والمفاتيح <small>09</small></a>
+  <a href="#segmented">المبدّل والتبويبات <small>10</small></a>
+  <a href="#badge">الشارات والشرائح <small>11</small></a>
+  <a href="#feedback">التنبيهات والإشعارات <small>12</small></a>
+  <a href="#menu">القوائم والتلميحات <small>13</small></a>
+  <a href="#dialog">النوافذ <small>14</small></a>
+  <a href="#loading">التحميل والحالات الفارغة <small>15</small></a>
+  <a href="#table">الجداول <small>16</small></a>
+  <a href="#upload">الرفع <small>17</small></a>
+  <div class="doc-nav__group">عرض البيانات</div>
+  <a href="#stat">بطاقات المؤشّرات <small>18</small></a>
+  <a href="#charts">الرسوم البيانية <small>19</small></a>
+  <div class="doc-nav__group">الأنماط والقوالب</div>
+  <a href="#navbar">شريط التنقّل <small>20</small></a>
+  <a href="#fontcard">بطاقة الخط <small>21</small></a>
+  <a href="#plans">الخطط <small>22</small></a>
+  <a href="#auth">الدخول <small>23</small></a>
+  <a href="#template">قالب لوحة التحليلات <small>24</small></a>
+  <a href="#rules">قواعد الالتزام <small>25</small></a>
+</nav>
+
+<main class="doc-main" id="main">
+
+<!-- ═══════════════ البداية ═══════════════ -->
+<section id="intro" class="doc-sec" style="padding-top:0">
+  <div class="hero aura">
+    <span class="badge badge--brand"><span class="badge__dot"></span>الإصدار 4.0 · أيلول 2026</span>
+    <h1 style="margin-top:var(--space-5)">نظام حرف</h1>
+    <p>اللغة البصرية المشتركة لمكتبة حرف: رموز ومكوّنات وأنماط تبني بها كل شاشة — من تصفّح الخطوط إلى لوحة الإدارة — بصوت واحد، عربيٍّ أولاً، ويمكن الوصول إليه.</p>
+    <div class="cluster">
+      <a class="btn btn--ink" href="#color">ابدأ بالأسس</a>
+      <a class="btn btn--secondary" href="#template"><svg class="icon" aria-hidden="true"><use href="#i-stats"/></svg>قالب لوحة التحليلات</a>
+    </div>
+    <div class="hero-stats">
+      <div><b id="statTokens">—</b>رمز تصميم</div>
+      <div><b>21</b>مكوّناً</div>
+      <div><b>86</b>أيقونة</div>
+      <div><b>AA</b>تباين كل النصوص</div>
+    </div>
+  </div>
+
+  <div class="principles">
+    <div class="principle"><span>01</span><h3>الخط هو البطل</h3><p>الواجهة إطار هادئ حول الحرف. لا زخرفة تنافس العيّنة، ولا لون يعلو على الخط المعروض.</p></div>
+    <div class="principle"><span>02</span><h3>لون واحد للفعل</h3><p>الأحمر للهوية وللفعل الأساسي فقط. الحالات تتكلّم بلونها وأيقونتها، والتركيز بالحبر.</p></div>
+    <div class="principle"><span>03</span><h3>عربيٌّ أولاً</h3><p>سلّم خطوط مضبوط للعربية، بلا تباعد حروف، واتجاه منطقي في كل خاصية. اللاتيني ضيف مرحَّب به.</p></div>
+    <div class="principle"><span>04</span><h3>كل حالة مصمَّمة</h3><p>التحميل والفراغ والخطأ والتعطيل جزء من المكوّن، لا ترقيع لاحق.</p></div>
+  </div>
+</section>
+
+<section id="changes" class="doc-sec">
+  <div class="doc-head">
+    <div class="doc-head__kicker">سجلّ التغييرات</div>
+    <h2>ما الجديد في 4.0</h2>
+    <p>مراجعة شاملة للإصدار 3.0 ودمج لوحة التحليلات. أُصلح كل ما كان النظام يقوله ولا يطبّقه.</p>
+  </div>
+  <ul class="changes">
+    <li><span>البنية</span><div><b>مصدر مقسّم</b> — الرموز والمكوّنات والسلوك في ملفات مستقلة (<code>src/</code>)، ونسخة الملف الواحد تُبنى منها. لا نسخ يدوي للرموز بين الصفحات بعد اليوم.</div></li>
+    <li><span>الوضع الداكن</span><div><b>تعريف واحد</b> عبر <code>light-dark()</code> بدل كتلتين مكرّرتين. الألوان الخام لا تتغيّر أبداً؛ الأدوار وحدها تتبدّل.</div></li>
+    <li><span>التباين</span><div>كل أدوار النص تتجاوز <b>4.5:1</b>. الزر الأساسي على <code>harf-600</code> (5.2:1 بدل 3.99). حدود الحقول 3:1.</div></li>
+    <li><span>التركيز</span><div>حلقة <b>حبر</b> موحّدة بدل الأحمر — لم يعد التركيز يشبه الخطأ.</div></li>
+    <li><span>الألوان</span><div>سلالم كاملة 50–900 مولّدة في OKLCH، بأسماء لونية (<code>green</code>، <code>blue</code>…) تُربط بأدوار (<code>success</code>، <code>info</code>…). دُمج الذهبي بالكهرماني، وأُضيفت لوحة رسوم بيانية لا تستخدم الأحمر للسلاسل العادية.</div></li>
+    <li><span>الطباعة</span><div>لا نصّ تحت <b>12px</b>. أُزيل تباعد الحروف عن العربية. أربعة أوزان حقيقية بلا «200» وهمي. الخطوط woff2 بدل TTF.</div></li>
+    <li><span>المقاسات</span><div>ثلاثة ارتفاعات فقط (32 / 40 / 48) يتشاركها الزر والحقل والمبدّل فتتحاذى. سلّم للطبقات ونقاط الانكسار.</div></li>
+    <li><span>المكوّنات</span><div>زر واحد بخيارات بدل سبعة تطبيقات. الحالات من سمات <code>aria-*</code> لا من فئات <code>.on</code>. مكوّنات جديدة: شارة الحالة بأيقونة، التلميح، النافذة الأصلية، الترقيم، الهيكل العظمي.</div></li>
+    <li><span>البيانات</span><div>قسم كامل لعرض البيانات من لوحة التحليلات: المؤشّر، الأعمدة، الخط، الكعكة، الترتيب، وحالات التحميل والفراغ. الأرقام تُكتب في HTML مباشرة — لا «$0» إن تأخّر السكربت.</div></li>
+  </ul>
+</section>
+
+<!-- ═══════════════ الأسس ═══════════════ -->
+<section id="color" class="doc-sec">
+  <div class="doc-head">
+    <div class="doc-head__kicker">الأسس · 01</div>
+    <h2>الألوان</h2>
+    <p>ثلاث طبقات: ألوان خام لا تُستخدم مباشرة، أدوار تستخدمها المكوّنات وتتبدّل مع الوضع الداكن، ودلالات منتج مبنية على الأدوار.</p>
+  </div>
+
+  <div class="ramp-label">حرف — لون الهوية <span>الشعار على 500 · الزر الأساسي على 600</span></div>
+  <div class="ramp" data-ramp="harf"></div>
+  <div class="ramp-label">المحايد <span>رمادي بارد بميل بنفسجي — 500 وما فوق صالح للنص</span></div>
+  <div class="ramp" data-ramp="n" style="--n:12"></div>
+
+  <h3 class="doc-sub">السلالم الدلالية</h3>
+  <p class="doc-note">مولّدة من لون مرجعي بخطوات إضاءة متساوية في OKLCH، فتتصرّف كل السلالم بالطريقة نفسها: <b>50–100</b> صبغات، <b>500</b> التعبئة، <b>700–800</b> النص.</p>
+  <div class="mini-ramps" id="miniRamps"></div>
+
+  <h3 class="doc-sub">الأدوار</h3>
+  <p class="doc-note">هذه هي الرموز الوحيدة المسموحة داخل المكوّنات. العمود الثاني يعرض القيمة في الوضعين.</p>
+  <div class="stage stage--plain stage--tight"><div class="table-wrap"><table class="tok" id="roleTable">
+    <thead><tr><th>الرمز</th><th>فاتح / داكن</th><th>الاستخدام</th></tr></thead><tbody></tbody></table></div></div>
+
+  <h3 class="doc-sub">الحالات</h3>
+  <p class="doc-note">لكل حالة أربعة أدوار: <code>-bg</code> صبغة، <code>-fg</code> نصّ يُقرأ عليها، <code>-solid</code> للأيقونة والنقطة، <code>-border</code>. الحالة لا تُعرف باللون وحده — ترافقها أيقونة أو كلمة دائماً.</p>
+  <div class="grid-3" id="statusCards"></div>
+
+  <h3 class="doc-sub">دلالات المنتج</h3>
+  <p class="doc-note">لا ألوان جديدة — مجرّد أسماء فوق الحالات: <b>المجاني</b> أخضر، <b>المدفوع والاشتراك</b> كهرماني، <b>التجريبي</b> أزرق (معلومة لا تحذير)، <b>الذكاء الاصطناعي</b> بنفسجي محجوز له وحده.</p>
+  <div class="stage stage--tight"><div class="row">
+    <span class="badge badge--success"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>مجاني</span>
+    <span class="badge badge--warning"><svg class="icon" aria-hidden="true"><use href="#i-crown"/></svg>مدفوع</span>
+    <span class="badge badge--info"><svg class="icon" aria-hidden="true"><use href="#i-time-fast"/></svg>تجريبي</span>
+    <span class="badge badge--ai"><svg class="icon" aria-hidden="true"><use href="#i-magic-wand"/></svg>مقترح بالذكاء</span>
+    <span class="badge badge--brand"><span class="badge__dot"></span>جديد</span>
+  </div></div>
+
+  <h3 class="doc-sub">ألوان الرسوم البيانية</h3>
+  <p class="doc-note">ترتيب ثابت: السلسلة الأولى دائماً <code>--viz-1</code>. <b>الأحمر ليس في اللوحة</b> — لأنه لون الهوية ويُقرأ «سلبياً»؛ يُستخدم <code>--viz-highlight</code> لتمييز عمود واحد فقط.</p>
+  <div class="stage stage--tight"><div class="row" id="vizSwatches"></div></div>
+
+  <h3 class="doc-sub">التباين — محسوب الآن</h3>
+  <p class="doc-note">تُحسب النسب من القيم الفعلية في الوضع الحالي. بدّل الوضع الداكن من الأعلى لترى الأرقام تتغيّر.</p>
+  <div class="contrast" id="contrast"></div>
+</section>
+
+<section id="type" class="doc-sec">
+  <div class="doc-head">
+    <div class="doc-head__kicker">الأسس · 02</div>
+    <h2>الطباعة</h2>
+    <p>Graphik Arabic بأربعة أوزان حقيقية. العناوين مرنة مع عرض الشاشة، والنصّ ثابت — لأن القراءة لا تتغيّر حين يتّسع المتصفّح.</p>
+  </div>
+  <div class="stage stage--plain" id="typeScale"></div>
+
+  <h3 class="doc-sub">الأوزان</h3>
+  <div class="stage stage--plain grid-4">
+    <div><div class="t-h2" style="font-weight:300">أبجد هوز</div><div class="t-label">300 · للعرض الكبير فقط</div></div>
+    <div><div class="t-h2" style="font-weight:400">أبجد هوز</div><div class="t-label">400 · النص</div></div>
+    <div><div class="t-h2" style="font-weight:500">أبجد هوز</div><div class="t-label">500 · التسميات والأزرار</div></div>
+    <div><div class="t-h2" style="font-weight:600">أبجد هوز</div><div class="t-label">600 · العناوين والأرقام</div></div>
+  </div>
+
+  <h3 class="doc-sub">قواعد العربية</h3>
+  <div class="dos">
+    <div class="do"><div class="do__show"><span class="t-label" style="font-size:13px">اللغات المدعومة</span></div>
+      <div class="do__txt"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><span>التسمية العربية تتميّز بالوزن واللون.</span></div></div>
+    <div class="do do--no"><div class="do__show"><span style="font-size:11px;letter-spacing:.12em;color:var(--text-tertiary);font-weight:500">اللغات المدعومة</span></div>
+      <div class="do__txt"><svg class="icon" aria-hidden="true"><use href="#i-cross-small"/></svg><span>تباعد الحروف يقطع اتصال الحرف العربي، ومقاس 11px لا يُقرأ.</span></div></div>
+    <div class="do"><div class="do__show"><span>حمّل <b class="t-num">3,600</b> مستخدم الخطّ هذا الشهر</span></div>
+      <div class="do__txt"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><span>أرقام لاتينية جدولية في كل مكان، معزولة الاتجاه بـ <code>.t-num</code>.</span></div></div>
+    <div class="do do--no"><div class="do__show"><span>البريد: <span>ahmed@harf.co</span> (مقلوب)</span></div>
+      <div class="do__txt"><svg class="icon" aria-hidden="true"><use href="#i-cross-small"/></svg><span>قيمة لاتينية بلا عزل تنقلب علاماتها. استخدم <code>dir="ltr"</code> أو <code>.ltr</code>.</span></div></div>
+  </div>
+</section>
+
+<section id="space" class="doc-sec">
+  <div class="doc-head">
+    <div class="doc-head__kicker">الأسس · 03</div>
+    <h2>المسافات والمقاسات</h2>
+    <p>أساس 4 بكسل. كل هامش وحشوة وفجوة من هذا السلّم — والرقم خارجه يحتاج سبباً مكتوباً.</p>
+  </div>
+  <div class="grid-2">
+    <div class="stage stage--plain stage--tight" id="spaceScale"></div>
+    <div class="stack">
+      <div class="stage stage--plain stage--tight">
+        <div class="t-label" style="margin-bottom:var(--space-3)">الاستخدام الشائع</div>
+        <table class="tok"><tbody>
+          <tr><td><code>space-2</code></td><td class="desc">بين أيقونة ونصّها</td></tr>
+          <tr><td><code>space-3</code></td><td class="desc">بين عناصر مجموعة، فجوة شبكة البطاقات</td></tr>
+          <tr><td><code>space-5</code></td><td class="desc">حشوة البطاقة</td></tr>
+          <tr><td><code>space-8</code></td><td class="desc">بين مجموعات داخل صفحة</td></tr>
+          <tr><td><code>section-gap</code></td><td class="desc">بين أقسام الصفحة (48–80 مرن)</td></tr>
+        </tbody></table>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="doc-sub">ارتفاعات التحكّم</h3>
+  <p class="doc-note">ثلاثة مقاسات يتشاركها <b>الزر والحقل والمبدّل</b> — فتتحاذى في أي صف دون تعديل. <code>md</code> هو الافتراضي، و<code>lg</code> للنماذج الرئيسية وشاشات اللمس.</p>
+  <div class="stage stack" style="--stack-gap:var(--space-5)">
+    <div class="row"><span class="badge badge--outline badge--sm ltr">sm · 32</span>
+      <label class="input input--sm" style="width:200px"><svg class="icon" aria-hidden="true"><use href="#i-search"/></svg><input placeholder="بحث" aria-label="بحث"></label>
+      <div class="segmented segmented--sm" role="group" aria-label="الفترة"><button type="button" aria-pressed="true">أسبوع</button><button type="button" aria-pressed="false">شهر</button></div>
+      <button class="btn btn--secondary btn--sm" type="button">تصفية</button><button class="btn btn--primary btn--sm" type="button">تطبيق</button></div>
+    <div class="row"><span class="badge badge--outline badge--sm ltr">md · 40</span>
+      <label class="input" style="width:200px"><svg class="icon" aria-hidden="true"><use href="#i-search"/></svg><input placeholder="بحث" aria-label="بحث"></label>
+      <div class="segmented" role="group" aria-label="الفترة"><button type="button" aria-pressed="true">أسبوع</button><button type="button" aria-pressed="false">شهر</button></div>
+      <button class="btn btn--secondary" type="button">تصفية</button><button class="btn btn--primary" type="button">تطبيق</button></div>
+    <div class="row"><span class="badge badge--outline badge--sm ltr">lg · 48</span>
+      <label class="input input--lg" style="width:200px"><svg class="icon" aria-hidden="true"><use href="#i-search"/></svg><input placeholder="بحث" aria-label="بحث"></label>
+      <button class="btn btn--secondary btn--lg" type="button">تصفية</button><button class="btn btn--primary btn--lg" type="button">تطبيق</button></div>
+  </div>
+
+  <h3 class="doc-sub">الطبقات ونقاط الانكسار</h3>
+  <div class="grid-2">
+    <div class="stage stage--plain stage--tight"><table class="tok"><thead><tr><th>الطبقة</th><th>القيمة</th></tr></thead><tbody>
+      <tr><td><code>z-sticky</code></td><td class="desc">100 — الترويسة الثابتة</td></tr>
+      <tr><td><code>z-dropdown</code></td><td class="desc">200 — القوائم المنسدلة</td></tr>
+      <tr><td><code>z-overlay</code></td><td class="desc">300 — الحاجب والدُرج</td></tr>
+      <tr><td><code>z-modal</code></td><td class="desc">400 — النوافذ</td></tr>
+      <tr><td><code>z-toast</code></td><td class="desc">500 — الإشعارات العائمة</td></tr>
+      <tr><td><code>z-tooltip</code></td><td class="desc">600 — التلميحات</td></tr></tbody></table></div>
+    <div class="stage stage--plain stage--tight"><table class="tok"><thead><tr><th>النقطة</th><th>العرض والسلوك</th></tr></thead><tbody>
+      <tr><td><code>sm</code></td><td class="desc">640 — النوافذ تصبح أوراقاً سفلية</td></tr>
+      <tr><td><code>md</code></td><td class="desc">768 — عمودان في النماذج</td></tr>
+      <tr><td><code>lg</code></td><td class="desc">1024 — روابط التنقّل تنتقل إلى الدُرج</td></tr>
+      <tr><td><code>xl</code></td><td class="desc">1280 — شبكة اللوحة الكاملة (12 عموداً)</td></tr>
+      <tr><td><code>2xl</code></td><td class="desc">1440 — أقصى عرض للمحتوى</td></tr></tbody></table></div>
+  </div>
+</section>
+
+<section id="shape" class="doc-sec">
+  <div class="doc-head">
+    <div class="doc-head__kicker">الأسس · 04</div>
+    <h2>الحواف والعمق</h2>
+    <p>ستّ حواف، لكلٍّ منها دور. والقاعدة الذهبية: حافة العنصر الداخلي = حافة الحاوية − الحشوة بينهما.</p>
+  </div>
+  <div class="grid-3" style="grid-template-columns:repeat(auto-fit,minmax(130px,1fr))">
+    <div class="shape" style="border-radius:var(--radius-xs)"><div><code>radius-xs · 6</code>خانة اختيار</div></div>
+    <div class="shape" style="border-radius:var(--radius-sm)"><div><code>radius-sm · 8</code>زر صغير</div></div>
+    <div class="shape" style="border-radius:var(--radius-md)"><div><code>radius-md · 12</code>زر، حقل، قائمة</div></div>
+    <div class="shape" style="border-radius:var(--radius-lg)"><div><code>radius-lg · 16</code>بطاقة</div></div>
+    <div class="shape" style="border-radius:var(--radius-xl)"><div><code>radius-xl · 24</code>لوح، نافذة</div></div>
+    <div class="shape" style="border-radius:var(--radius-pill)"><div><code>pill</code>شريحة، مبدّل</div></div>
+  </div>
+  <h3 class="doc-sub">العمق</h3>
+  <p class="doc-note">الظلّ يعني «فوق»، لا «مهم». البطاقات مسطّحة بحدّ؛ الظلّ للعناصر العائمة فقط. في الداكن يُضاف خطّ ضوء علوي (<code>--rim</code>) لأن الظلّ وحده لا يُرى.</p>
+  <div class="stage stage--canvas grid-4" style="grid-template-columns:repeat(auto-fit,minmax(150px,1fr))">
+    <div class="elev" style="border:1px solid var(--border-default)"><div><code>border</code>بطاقة ساكنة</div></div>
+    <div class="elev" style="box-shadow:var(--shadow-1),var(--rim)"><div><code>shadow-1</code>زر ثانوي</div></div>
+    <div class="elev" style="box-shadow:var(--shadow-2),var(--rim)"><div><code>shadow-2</code>تحويم البطاقة</div></div>
+    <div class="elev" style="box-shadow:var(--shadow-3),var(--rim)"><div><code>shadow-3</code>قائمة منسدلة</div></div>
+    <div class="elev" style="box-shadow:var(--shadow-4),var(--rim)"><div><code>shadow-4</code>نافذة، إشعار</div></div>
+  </div>
+</section>
+
+<section id="motion" class="doc-sec">
+  <div class="doc-head">
+    <div class="doc-head__kicker">الأسس · 05</div>
+    <h2>الحركة</h2>
+    <p>الحركة تشرح ما حدث — لا تزيّن. سريعة عند الاستجابة لفعل، أبطأ قليلاً عند ظهور شيء جديد، ومعطّلة كلياً لمن طلب تقليل الحركة.</p>
+  </div>
+  <div class="motion" id="motionDemo">
+    <button class="motion__card" type="button" style="--d:var(--duration-instant);--e:var(--ease-out)" aria-label="تشغيل: فوري"><b>فوري</b><small>80ms · ضغط الزر</small><div class="motion__track"><span class="motion__ball"></span></div></button>
+    <button class="motion__card" type="button" style="--d:var(--duration-fast);--e:var(--ease-out)" aria-label="تشغيل: سريع"><b>سريع</b><small>140ms · تحويم، لون</small><div class="motion__track"><span class="motion__ball"></span></div></button>
+    <button class="motion__card" type="button" style="--d:var(--duration-base);--e:var(--ease-out)" aria-label="تشغيل: أساسي"><b>أساسي</b><small>220ms · مبدّل، قائمة</small><div class="motion__track"><span class="motion__ball"></span></div></button>
+    <button class="motion__card" type="button" style="--d:var(--duration-slow);--e:var(--ease-spring)" aria-label="تشغيل: نابض"><b>نابض</b><small>360ms · ظهور نافذة</small><div class="motion__track"><span class="motion__ball"></span></div></button>
+  </div>
+  <p class="doc-note" style="margin-top:var(--space-3)">اضغط أي بطاقة لتشغيلها.</p>
+</section>
+
+<section id="icons" class="doc-sec">
+  <div class="doc-head">
+    <div class="doc-head__kicker">الأسس · 06</div>
+    <h2>الأيقونات</h2>
+    <p>Uicons — Regular Rounded للحالة الساكنة، و Solid Rounded (<code>-fill</code>) للحالة النشطة فقط: المفضّلة المضافة، النجمة المختارة. ثلاثة مقاسات: 16 داخل الأزرار، 20 افتراضي، 24 للعرض.</p>
+  </div>
+  <div class="stage stage--plain stage--tight"><div class="icon-grid" id="iconGrid"></div></div>
+  <p class="doc-note" style="margin-top:var(--space-3)">لإضافة أيقونة: أضف اسمها إلى <code>tools/make-icons.mjs</code> ثم أعد التوليد. أيقونة تحمل معنى تحتاج <code>aria-label</code> على زرّها؛ الزخرفية <code>aria-hidden="true"</code>.</p>
+</section>
+
+<!-- ═══════════════ المكوّنات ═══════════════ -->
+<section id="button" class="doc-sec">
+  <div class="doc-head">
+    <div class="doc-head__kicker">المكوّنات · 07</div>
+    <h2>الأزرار</h2>
+    <p>ستّة أنواع لكل الحالات، وزرّ <b>أساسي واحد</b> في كل شاشة أو قسم. الأنواع تختلف بالأولوية لا بالذوق.</p>
+  </div>
+  <div class="stage">
+    <div class="matrix" style="--cols:5">
+      <span></span><span class="matrix__h">ساكن</span><span class="matrix__h">تحويم</span><span class="matrix__h">تركيز</span><span class="matrix__h">ضغط</span><span class="matrix__h">معطّل</span>
+      <span class="matrix__r">أساسي</span>
+      <button class="btn btn--primary" type="button">حمّل الخط</button><button class="btn btn--primary" data-demo="hover" type="button">حمّل الخط</button><button class="btn btn--primary" data-demo="focus" type="button">حمّل الخط</button><button class="btn btn--primary" data-demo="active" type="button" style="background:var(--action-primary-active)">حمّل الخط</button><button class="btn btn--primary" disabled type="button">حمّل الخط</button>
+      <span class="matrix__r">ثانوي</span>
+      <button class="btn btn--secondary" type="button">التفاصيل</button><button class="btn btn--secondary" data-demo="hover" type="button">التفاصيل</button><button class="btn btn--secondary" data-demo="focus" type="button">التفاصيل</button><button class="btn btn--secondary" data-demo="active" type="button">التفاصيل</button><button class="btn btn--secondary" disabled type="button">التفاصيل</button>
+      <span class="matrix__r">شبح</span>
+      <button class="btn btn--ghost" type="button">إلغاء</button><button class="btn btn--ghost" data-demo="hover" type="button">إلغاء</button><button class="btn btn--ghost" data-demo="focus" type="button">إلغاء</button><button class="btn btn--ghost" data-demo="active" type="button">إلغاء</button><button class="btn btn--ghost" disabled type="button">إلغاء</button>
+      <span class="matrix__r">حبر</span>
+      <button class="btn btn--ink" type="button">ابدأ مجاناً</button><button class="btn btn--ink" data-demo="hover" type="button">ابدأ مجاناً</button><button class="btn btn--ink" data-demo="focus" type="button">ابدأ مجاناً</button><button class="btn btn--ink" data-demo="active" type="button">ابدأ مجاناً</button><button class="btn btn--ink" disabled type="button">ابدأ مجاناً</button>
+      <span class="matrix__r">خطر</span>
+      <button class="btn btn--danger" type="button">حذف نهائياً</button><button class="btn btn--danger" data-demo="hover" type="button">حذف نهائياً</button><button class="btn btn--danger" data-demo="focus" type="button">حذف نهائياً</button><button class="btn btn--danger" data-demo="active" type="button">حذف نهائياً</button><button class="btn btn--danger" disabled type="button">حذف نهائياً</button>
+    </div>
+  </div>
+  <div class="stage">
+    <div class="row">
+      <button class="btn btn--primary" type="button"><svg class="icon" aria-hidden="true"><use href="#i-download"/></svg>تحميل الخط</button>
+      <button class="btn btn--secondary" type="button">المزيد<svg class="icon" aria-hidden="true"><use href="#i-angle-small-down"/></svg></button>
+      <button class="btn btn--primary" type="button" data-busy-demo>احفظ التغييرات</button>
+      <button class="btn btn--secondary btn--icon" type="button" aria-label="أضف إلى المفضّلة" data-toggle aria-pressed="false"><svg class="icon" aria-hidden="true"><use href="#i-heart" data-on="#i-heart-fill" data-off="#i-heart"/></svg></button>
+      <button class="btn btn--ghost btn--icon" type="button" aria-label="الإشعارات، 3 غير مقروءة"><svg class="icon" aria-hidden="true"><use href="#i-bell"/></svg><span class="btn__count" aria-hidden="true">3</span></button>
+      <button class="btn btn--link" type="button">نسيت كلمة المرور؟</button>
+    </div>
+  </div>
+  <details class="code"><summary><svg class="icon" aria-hidden="true"><use href="#i-angle-small-down"/></svg>الكود</summary><pre>&lt;button class="btn btn--primary"&gt;حمّل الخط&lt;/button&gt;
+&lt;button class="btn btn--secondary btn--sm"&gt;…&lt;/button&gt;     &lt;!-- sm · md(افتراضي) · lg --&gt;
+&lt;button class="btn btn--ghost btn--icon" aria-label="…"&gt;&lt;svg class="icon"&gt;…&lt;/svg&gt;&lt;/button&gt;
+&lt;button class="btn btn--primary" aria-busy="true"&gt;…&lt;/button&gt;  &lt;!-- تحميل: العرض لا يتغيّر --&gt;</pre></details>
+  <div class="dos">
+    <div class="do"><div class="do__show"><button class="btn btn--ghost" type="button">إلغاء</button><button class="btn btn--primary" type="button">نشر الخط</button></div>
+      <div class="do__txt"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><span>فعل أساسي واحد، واضح الفعل. البديل ثانوي أو شبح.</span></div></div>
+    <div class="do do--no"><div class="do__show"><button class="btn btn--primary" type="button">حفظ</button><button class="btn btn--primary" type="button">نشر</button><button class="btn btn--danger" type="button">حذف</button></div>
+      <div class="do__txt"><svg class="icon" aria-hidden="true"><use href="#i-cross-small"/></svg><span>ثلاثة أفعال بصوت عالٍ = لا فعل واضح. والتدرّج على زر ممنوع.</span></div></div>
+  </div>
+</section>
+
+<section id="input" class="doc-sec">
+  <div class="doc-head">
+    <div class="doc-head__kicker">المكوّنات · 08</div>
+    <h2>الحقول</h2>
+    <p>حدّ واضح بتباين 3:1، تسمية فوق الحقل دائماً (لا نصّ مؤقت بدلاً عنها)، والخطأ يُقال بكلمات مع أيقونة — لا باللون وحده.</p>
+  </div>
+  <div class="stage">
+    <div class="matrix" style="--cols:3;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space-6)">
+      <div class="field"><label class="field__label" for="f1">اسم الخط</label><div class="input"><input id="f1" placeholder="مثال: تجاريب"></div><span class="field__hint">يظهر كما تكتبه في صفحة الخط.</span></div>
+      <div class="field"><label class="field__label" for="f2">تحويم</label><div class="input" data-demo="hover"><input id="f2" value="تجاريب"></div></div>
+      <div class="field"><label class="field__label" for="f3">تركيز</label><div class="input" data-demo="focus"><input id="f3" value="تجاريب"></div></div>
+      <div class="field"><label class="field__label" for="f4">البريد الإلكتروني</label><div class="input"><input id="f4" type="email" value="ahmed@" aria-invalid="true" aria-describedby="f4e"></div>
+        <span class="field__error" id="f4e"><svg class="icon" aria-hidden="true"><use href="#i-exclamation"/></svg>البريد ناقص — أضف ما بعد علامة @</span></div>
+      <div class="field"><label class="field__label" for="f5">معطّل</label><div class="input"><input id="f5" value="Graphik Arabic" disabled></div></div>
+      <div class="field"><label class="field__label" for="f6">للقراءة فقط</label><div class="input"><input id="f6" value="HRF-2941" readonly dir="ltr"></div><span class="field__hint">رقم الطلب لا يُعدَّل.</span></div>
+    </div>
+  </div>
+  <div class="stage">
+    <div class="grid-2" style="gap:var(--space-6)">
+      <div class="field"><label class="field__label" for="f7">البحث</label>
+        <div class="input input--pill"><svg class="icon" aria-hidden="true"><use href="#i-search"/></svg><input id="f7" type="search" placeholder="ابحث عن خط أو مصمّم…"><span class="input__kbd">⌘K</span></div></div>
+      <div class="field"><label class="field__label" for="f8">السعر <span class="opt">(اختياري)</span></label>
+        <div class="input"><input id="f8" inputmode="numeric" value="39"><span class="input__affix">USD</span></div></div>
+      <div class="field"><label class="field__label" for="f9">الترخيص</label>
+        <div class="input input--select"><select id="f9"><option>شخصي وتجاري</option><option>شخصي فقط</option><option>SIL OFL</option></select></div></div>
+      <div class="field"><div class="field__row"><label class="field__label" for="f10">كلمة المرور</label><button class="btn btn--link t-sm" type="button">نسيتها؟</button></div>
+        <div class="input"><svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg><input id="f10" type="password" value="harf-2026!"><button class="btn btn--ghost btn--sm btn--icon" type="button" aria-label="إظهار كلمة المرور" id="pwToggle" style="margin-inline-end:-6px"><svg class="icon" aria-hidden="true"><use href="#i-eye"/></svg></button></div></div>
+      <div class="field" style="grid-column:1/-1"><div class="field__row"><label class="field__label" for="f11">وصف الخط</label><span class="field__hint" id="f11c">0 / 280</span></div>
+        <textarea class="textarea" id="f11" maxlength="280" aria-describedby="f11c" placeholder="ما الذي يميّز هذا الخط؟ لمن صُمّم؟"></textarea></div>
+    </div>
+  </div>
+</section>
+
+<section id="selection" class="doc-sec">
+  <div class="doc-head">
+    <div class="doc-head__kicker">المكوّنات · 09</div>
+    <h2>الاختيار والمفاتيح</h2>
+    <p>خانة الاختيار لعدّة خيارات، والراديو لخيار واحد، والمفتاح لإعداد يعمل فوراً دون زرّ حفظ. كلها بلون الحبر — الأخضر للمفتاح المفعّل فقط لأنه «يعمل الآن».</p>
+  </div>
+  <div class="grid-3">
+    <div class="stage stage--plain stack" style="--stack-gap:var(--space-4)">
+      <div class="t-label">خانات الاختيار</div>
+      <label class="check"><input type="checkbox" checked><span class="check__text">عربي</span></label>
+      <label class="check"><input type="checkbox"><span class="check__text">كردي<small>يشمل الحروف الإضافية ڤ ڵ ڕ</small></span></label>
+      <label class="check"><input type="checkbox" id="indet"><span class="check__text">كل اللغات (جزئي)</span></label>
+      <label class="check"><input type="checkbox" disabled><span class="check__text">فارسي — قريباً</span></label>
+    </div>
+    <div class="stage stage--plain stack" style="--stack-gap:var(--space-4)" role="radiogroup" aria-label="نوع الرفع">
+      <div class="t-label">أزرار الراديو</div>
+      <label class="check"><input type="radio" name="kind" checked><span class="check__text">خط مجاني<small>متاح للتحميل للجميع</small></span></label>
+      <label class="check"><input type="radio" name="kind"><span class="check__text">خط مدفوع<small>يُباع بترخيص</small></span></label>
+      <label class="check"><input type="radio" name="kind"><span class="check__text">نسخة تجريبية</span></label>
+    </div>
+    <div class="stage stage--plain stack" style="--stack-gap:var(--space-5)">
+      <div class="t-label">المفاتيح</div>
+      <div class="switch-row"><span id="sw1">إشعارات المبيعات</span><button class="switch" type="button" role="switch" aria-checked="true" aria-labelledby="sw1"></button></div>
+      <div class="switch-row"><span id="sw2">النشرة البريدية</span><button class="switch" type="button" role="switch" aria-checked="false" aria-labelledby="sw2"></button></div>
+      <div class="switch-row"><span id="sw3" class="t-tertiary">المصادقة الثنائية</span><button class="switch" type="button" role="switch" aria-checked="true" aria-labelledby="sw3" disabled></button></div>
+    </div>
+  </div>
+</section>
+
+<section id="segmented" class="doc-sec">
+  <div class="doc-head">
+    <div class="doc-head__kicker">المكوّنات · 10</div>
+    <h2>المبدّل والتبويبات</h2>
+    <p><b>المبدّل</b> يغيّر عرض المحتوى نفسه (الفترة، الشكل). <b>التبويبات</b> تنتقل بين محتويات مختلفة. التبويبات تعمل بالأسهم و Home و End.</p>
+  </div>
+  <div class="stage stack" style="--stack-gap:var(--space-6)">
+    <div class="row">
+      <div class="segmented" role="group" aria-label="الفترة"><button type="button" aria-pressed="false">7 أيام</button><button type="button" aria-pressed="true">30 يوماً</button><button type="button" aria-pressed="false">سنة</button></div>
+      <div class="segmented" role="group" aria-label="الفوترة"><button type="button" aria-pressed="true">شهري</button><button type="button" aria-pressed="false">سنوي <span class="badge badge--success">‎−20%</span></button></div>
+      <div class="segmented segmented--sm" role="group" aria-label="العرض"><button type="button" aria-pressed="true" aria-label="شبكة"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-apps"/></svg></button><button type="button" aria-pressed="false" aria-label="قائمة"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-list"/></svg></button></div>
+    </div>
+    <div>
+      <div class="tabs" role="tablist" aria-label="أقسام الخط">
+        <button role="tab" aria-selected="true" aria-controls="tp1" id="t1">نظرة عامة</button>
+        <button role="tab" aria-selected="false" aria-controls="tp2" id="t2">الأوزان <span class="badge">5</span></button>
+        <button role="tab" aria-selected="false" aria-controls="tp3" id="t3">الترخيص</button>
+        <button role="tab" aria-selected="false" aria-controls="tp4" id="t4">سجلّ الإصدارات</button>
+      </div>
+      <div class="tabpanel" role="tabpanel" id="tp1" aria-labelledby="t1"><p class="doc-note" style="padding-top:var(--space-4)">خطّ عرضي بخمسة أوزان، صُمّم للعناوين الكبيرة والهويات البصرية.</p></div>
+      <div class="tabpanel" role="tabpanel" id="tp2" aria-labelledby="t2" hidden><p class="doc-note" style="padding-top:var(--space-4)">Light · Regular · Medium · Semibold · Bold</p></div>
+      <div class="tabpanel" role="tabpanel" id="tp3" aria-labelledby="t3" hidden><p class="doc-note" style="padding-top:var(--space-4)">شخصي وتجاري — يشمل الويب والطباعة.</p></div>
+      <div class="tabpanel" role="tabpanel" id="tp4" aria-labelledby="t4" hidden><p class="doc-note" style="padding-top:var(--space-4)">الإصدار 1.2 — أُضيفت الحروف الكردية.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="badge" class="doc-sec">
+  <div class="doc-head">
+    <div class="doc-head__kicker">المكوّنات · 11</div>
+    <h2>الشارات والشرائح</h2>
+    <p><b>الشارة</b> تقول حالة ولا تُضغط — بأيقونة تحمل المعنى مع اللون. <b>الشريحة</b> تُضغط: فلتر أو وسم قابل للإزالة. <b>الفرق</b> يتبع المعنى: الارتفاع الجيّد أخضر حتى لو كان «تكاليف أقل».</p>
+  </div>
+  <div class="stage stack" style="--stack-gap:var(--space-5)">
+    <div class="row">
+      <span class="badge badge--warning"><svg class="icon" aria-hidden="true"><use href="#i-hourglass"/></svg>قيد المراجعة</span>
+      <span class="badge badge--success"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>منشور</span>
+      <span class="badge badge--danger"><svg class="icon" aria-hidden="true"><use href="#i-cross-circle"/></svg>مرفوض</span>
+      <span class="badge"><svg class="icon" aria-hidden="true"><use href="#i-time-past"/></svg>منتهي</span>
+      <span class="badge badge--info"><svg class="icon" aria-hidden="true"><use href="#i-refresh"/></svg>قيد الرفع</span>
+      <span class="badge badge--ai"><svg class="icon" aria-hidden="true"><use href="#i-magic-wand"/></svg>مقترح</span>
+      <span class="badge badge--brand"><svg class="icon" aria-hidden="true"><use href="#i-paper-plane"/></svg>مُرسَل</span>
+    </div>
+    <div class="row">
+      <span class="badge badge--success"><span class="badge__dot"></span>متّصل</span>
+      <span class="badge badge--outline">5 أوزان</span>
+      <span class="badge badge--solid badge--danger badge--sm">12</span>
+      <span class="delta delta--up"><svg class="icon icon--sm" aria-hidden="true" style="width:12px;height:12px"><use href="#i-arrow-small-up"/></svg>12.4%</span>
+      <span class="delta delta--down"><svg class="icon icon--sm" aria-hidden="true" style="width:12px;height:12px"><use href="#i-arrow-small-down"/></svg>3.1%</span>
+      <span class="delta delta--flat">0%</span>
+    </div>
+    <div class="row">
+      <button class="chip" type="button" aria-pressed="true">الكل <span class="chip__count">1,284</span></button>
+      <button class="chip" type="button" aria-pressed="false" data-toggle>نسخ <span class="chip__count">412</span></button>
+      <button class="chip" type="button" aria-pressed="false" data-toggle>رقعة <span class="chip__count">208</span></button>
+      <button class="chip" type="button" aria-pressed="false" data-toggle>ثلث <span class="chip__count">96</span></button>
+      <span class="chip">كوفي<button class="chip__remove" type="button" aria-label="إزالة كوفي"><svg class="icon" aria-hidden="true" style="width:12px;height:12px"><use href="#i-cross-small"/></svg></button></span>
+    </div>
+    <div class="row">
+      <span class="avatar avatar--sm" style="--av-bg:var(--harf-100);--av-fg:var(--harf-700)">ع</span>
+      <span class="avatar" style="--av-bg:var(--violet-100);--av-fg:var(--violet-700)">سن</span>
+      <span class="avatar avatar--lg" style="--av-bg:var(--blue-100);--av-fg:var(--blue-800)">KB</span>
+      <span class="avatar avatar--xl" style="--av-bg:var(--green-100);--av-fg:var(--green-800)">AJ</span>
+      <span class="avatar avatar--lg avatar--square" style="--av-bg:var(--n-900);--av-fg:#fff">حرف</span>
+      <div class="avatar-group"><span class="avatar" style="--av-bg:var(--amber-100);--av-fg:var(--amber-800)">مع</span><span class="avatar" style="--av-bg:var(--teal-100);--av-fg:var(--teal-800)">ر</span><span class="avatar" style="--av-bg:var(--pink-100);--av-fg:var(--pink-800)">هـ</span><span class="avatar">+4</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="feedback" class="doc-sec">
+  <div class="doc-head">
+    <div class="doc-head__kicker">المكوّنات · 12</div>
+    <h2>التنبيهات والإشعارات</h2>
+    <p><b>التنبيه</b> ثابت في مكانه ويخصّ سياقه. <b>الإشعار العائم</b> يؤكّد فعلاً تمّ ثم يختفي — ولا يحمل معلومة لا تجدها في مكان آخر.</p>
+  </div>
+  <div class="stack" style="--stack-gap:var(--space-3)">
+    <div class="alert" role="status"><svg class="icon" aria-hidden="true"><use href="#i-info"/></svg><div class="alert__body"><span class="alert__title">النسخة التجريبية للعرض فقط.</span> حمّل الخط كاملاً بعد شراء الترخيص.</div></div>
+    <div class="alert alert--success" role="status"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><div class="alert__body"><span class="alert__title">نُشر الخط.</span> أصبح «تجاريب» متاحاً في المكتبة.</div><button class="btn btn--ghost btn--sm btn--icon alert__close" type="button" aria-label="إغلاق"><svg class="icon" aria-hidden="true"><use href="#i-cross-small"/></svg></button></div>
+    <div class="alert alert--warning" role="status"><svg class="icon" aria-hidden="true"><use href="#i-exclamation"/></svg><div class="alert__body"><span class="alert__title">رصيد التحميل منخفض.</span> بقي 3 تحميلات في خطّتك هذا الشهر.<div class="alert__actions"><button class="btn btn--secondary btn--sm" type="button">ترقية الخطة</button></div></div></div>
+    <div class="alert alert--danger" role="alert"><svg class="icon" aria-hidden="true"><use href="#i-cross-circle"/></svg><div class="alert__body"><span class="alert__title">تعذّر رفع الملف.</span> الملف ليس خطّاً صالحاً (OTF أو TTF أو WOFF2).</div></div>
+    <div class="alert alert--ai" role="status"><svg class="icon" aria-hidden="true"><use href="#i-magic-wand"/></svg><div class="alert__body"><span class="alert__title">اقتراح:</span> يشبه هذا الخط «الثلث» بنسبة 82%. هل تضيف الوسم؟</div></div>
+  </div>
+  <div class="stage stage--tight" style="margin-top:var(--space-4)">
+    <div class="row">
+      <div class="toast toast--static toast--success" style="width:auto"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><span class="toast__msg">أُضيف إلى المفضّلة</span><button class="btn btn--ghost btn--sm" type="button">تراجع</button></div>
+      <button class="btn btn--secondary" type="button" data-toast="حُفظت التغييرات">جرّب الإشعار</button>
+      <button class="btn btn--secondary" type="button" data-toast="تعذّر الاتصال — أعد المحاولة" data-toast-tone="danger" data-toast-icon="i-exclamation">إشعار خطأ</button>
+    </div>
+  </div>
+</section>
+
+<section id="menu" class="doc-sec">
+  <div class="doc-head">
+    <div class="doc-head__kicker">المكوّنات · 13</div>
+    <h2>القوائم والتلميحات</h2>
+    <p>القائمة تُفتح بالنقر وتُدار بالأسهم و Esc. التلميح يشرح أيقونة بلا نص — ولا يحمل أبداً معلومة ضرورية أو زرّاً.</p>
+  </div>
+  <div class="stage" style="min-height:360px">
+    <div class="row row--top" style="gap:var(--space-8)">
+      <div class="menu-anchor">
+        <button class="btn btn--secondary" type="button" data-menu="demoMenu" aria-haspopup="menu" aria-expanded="false">ترتيب حسب<svg class="icon" aria-hidden="true"><use href="#i-angle-small-down"/></svg></button>
+        <div class="menu menu--start" id="demoMenu" role="menu" aria-label="ترتيب حسب">
+          <button class="menu__item" role="menuitemradio" aria-checked="true" type="button">الأحدث</button>
+          <button class="menu__item" role="menuitemradio" aria-checked="false" type="button">الأكثر تحميلاً</button>
+          <button class="menu__item" role="menuitemradio" aria-checked="false" type="button">الاسم (أ–ي)</button>
+          <button class="menu__item" role="menuitemradio" aria-checked="false" type="button">السعر</button>
+        </div>
+      </div>
+      <div class="menu menu--static" role="menu" aria-label="الحساب" style="width:260px">
+        <div class="menu__head"><span class="avatar avatar--lg" style="--av-bg:var(--harf-600);--av-fg:#fff">AJ</span><div><b>عبدالملك جاسم</b><span>abdulmalik@harf.co</span></div></div>
+        <hr>
+        <a class="menu__item" role="menuitem" href="#menu"><svg class="icon" aria-hidden="true"><use href="#i-user"/></svg>حسابي</a>
+        <a class="menu__item" role="menuitem" href="#menu" data-demo="hover"><svg class="icon" aria-hidden="true"><use href="#i-download"/></svg>تحميلاتي</a>
+        <a class="menu__item" role="menuitem" href="#menu"><svg class="icon" aria-hidden="true"><use href="#i-crown"/></svg>الاشتراك<span class="menu__meta"><span class="badge badge--warning badge--sm">الأساسية</span></span></a>
+        <a class="menu__item" role="menuitem" href="#menu"><svg class="icon" aria-hidden="true"><use href="#i-settings"/></svg>الإعدادات<span class="menu__meta ltr">⌘,</span></a>
+        <a class="menu__item" role="menuitem" aria-disabled="true"><svg class="icon" aria-hidden="true"><use href="#i-shopping-cart"/></svg>المتجر — قريباً</a>
+        <hr>
+        <a class="menu__item menu__item--danger" role="menuitem" href="#menu"><svg class="icon" aria-hidden="true"><use href="#i-sign-out"/></svg>تسجيل الخروج</a>
+      </div>
+      <div class="stack" style="--stack-gap:var(--space-8);padding-top:var(--space-8)">
+        <span class="tooltip" data-demo="open"><button class="btn btn--secondary btn--icon" type="button" aria-describedby="tt1"><svg class="icon" aria-hidden="true"><use href="#i-share"/></svg><span class="sr-only">مشاركة</span></button><span class="tooltip__bubble" role="tooltip" id="tt1">مشاركة الخط</span></span>
+        <span class="tooltip"><button class="btn btn--secondary btn--icon" type="button" aria-describedby="tt2"><svg class="icon" aria-hidden="true"><use href="#i-copy"/></svg><span class="sr-only">نسخ</span></button><span class="tooltip__bubble" role="tooltip" id="tt2">نسخ الرابط</span></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="dialog" class="doc-sec">
+  <div class="doc-head">
+    <div class="doc-head__kicker">المكوّنات · 14</div>
+    <h2>النوافذ</h2>
+    <p>عنصر <code>&lt;dialog&gt;</code> الأصلي: حبس التركيز وإغلاق Esc وإعادة التركيز مجاناً. على الجوال تصبح النافذة ورقة من الأسفل. استخدمها للتأكيد والمهام القصيرة فقط.</p>
+  </div>
+  <div class="stage stage--canvas">
+    <div class="row">
+      <button class="btn btn--danger" type="button" data-dialog-open="dlgDelete"><svg class="icon" aria-hidden="true"><use href="#i-trash"/></svg>حذف الخط…</button>
+      <button class="btn btn--secondary" type="button" data-dialog-open="dlgPlans">عرض الخطط</button>
+    </div>
+    <div class="dialog__panel" style="margin-top:var(--space-6);animation:none;box-shadow:var(--shadow-3)">
+      <div class="dialog__head"><span class="dialog__icon"><svg class="icon" aria-hidden="true"><use href="#i-trash"/></svg></span><div style="flex:1"><h2>حذف «تجاريب» نهائياً؟</h2><p>سيختفي الخط من المكتبة ومن مفضّلة 214 مستخدماً. لا يمكن التراجع.</p></div></div>
+      <div class="dialog__foot"><button class="btn btn--ghost" type="button">إلغاء</button><button class="btn btn--danger" type="button">حذف نهائياً</button></div>
+    </div>
+  </div>
+</section>
+
+<section id="loading" class="doc-sec">
+  <div class="doc-head">
+    <div class="doc-head__kicker">المكوّنات · 15</div>
+    <h2>التحميل والحالات الفارغة</h2>
+    <p>الهيكل العظمي يطابق شكل المحتوى القادم فلا تقفز الصفحة. والحالة الفارغة تشرح <b>لماذا</b> هي فارغة و<b>ماذا</b> يفعل المستخدم الآن.</p>
+  </div>
+  <div class="grid-3">
+    <div class="card card--pad stack" style="--stack-gap:var(--space-3)" aria-busy="true" aria-label="جارٍ التحميل">
+      <span class="skeleton" style="height:120px;border-radius:var(--radius-md)"></span>
+      <span class="skeleton" style="height:14px;width:60%"></span>
+      <span class="skeleton" style="height:12px;width:40%"></span>
+    </div>
+    <div class="card card--pad stack" style="--stack-gap:var(--space-4)">
+      <div class="row"><span class="spinner" role="status" aria-label="جارٍ التحميل"></span><span class="t-sm t-secondary">جارٍ المعالجة…</span></div>
+      <div><div class="field__row t-sm"><span>رفع الملفات</span><span class="t-num t-tertiary">64%</span></div><div class="progress" style="margin-top:6px" role="progressbar" aria-valuenow="64" aria-valuemin="0" aria-valuemax="100" aria-label="رفع الملفات"><div class="progress__bar" style="--value:64%"></div></div></div>
+      <div><div class="field__row t-sm"><span>مكتمل</span><span class="t-num t-tertiary">100%</span></div><div class="progress progress--success" style="margin-top:6px"><div class="progress__bar" style="--value:100%"></div></div></div>
+      <div class="progress progress--indeterminate" role="progressbar" aria-label="جارٍ التحميل"><div class="progress__bar"></div></div>
+    </div>
+    <div class="card"><div class="empty" style="padding:var(--space-8) var(--space-4)"><span class="empty__icon"><svg class="icon" aria-hidden="true"><use href="#i-heart"/></svg></span><h3>لا خطوط في مفضّلتك بعد</h3><p>اضغط القلب على أي خط ليظهر هنا وتعود إليه بسهولة.</p><div class="cluster"><button class="btn btn--secondary btn--sm" type="button">تصفّح الخطوط</button></div></div></div>
+  </div>
+  <div class="grid-2" style="margin-top:var(--space-4)">
+    <div class="card"><div class="empty"><span class="empty__icon"><svg class="icon" aria-hidden="true"><use href="#i-search"/></svg></span><h3>لا نتائج لـ «ثلث مزخرف»</h3><p>جرّب كلمة أقصر، أو أزل فلتر «مدفوع».</p><div class="cluster"><button class="btn btn--secondary btn--sm" type="button">مسح الفلاتر</button></div></div></div>
+    <div class="card"><div class="empty empty--danger"><span class="empty__icon"><svg class="icon" aria-hidden="true"><use href="#i-exclamation"/></svg></span><h3>تعذّر تحميل البيانات</h3><p>المشكلة من جهتنا، وليست في اتصالك. أعد المحاولة بعد لحظات.</p><div class="cluster"><button class="btn btn--secondary btn--sm" type="button"><svg class="icon" aria-hidden="true"><use href="#i-refresh"/></svg>أعد المحاولة</button></div></div></div>
+  </div>
+</section>
+
+<section id="table" class="doc-sec">
+  <div class="doc-head">
+    <div class="doc-head__kicker">المكوّنات · 16</div>
+    <h2>الجداول</h2>
+    <p>الأرقام محاذاة إلى نهاية العمود لتُقارن بالعين. الرأس هادئ، والصفوف 56px للّمس. على الشاشات الضيّقة يُمرَّر الجدول أفقياً داخل حاويته فقط.</p>
+  </div>
+  <div class="card">
+    <div class="card__head" style="padding:var(--space-5) var(--space-5) 0">
+      <div class="card__title"><span class="card__icon"><svg class="icon" aria-hidden="true"><use href="#i-receipt"/></svg></span><div><h3>آخر العمليات</h3><p>آخر 30 يوماً</p></div></div>
+      <label class="input input--sm" style="width:200px"><svg class="icon" aria-hidden="true"><use href="#i-search"/></svg><input placeholder="بحث في العمليات" aria-label="بحث في العمليات"></label>
+    </div>
+    <div class="table-wrap" style="padding:var(--space-4) var(--space-5) 0">
+      <table class="table" id="demoTable">
+        <thead><tr><th>العميل</th><th>العمل</th><th>النوع</th><th><button class="th-sort" type="button" aria-sort="descending">التاريخ<svg class="icon" aria-hidden="true"><use href="#i-caret-down"/></svg></button></th><th class="num">المبلغ</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <div class="pagination" style="padding:var(--space-4) var(--space-5)">
+      <span>1–5 من <span class="t-num">214</span></span>
+      <nav class="pagination__pages" aria-label="الصفحات">
+        <button type="button" aria-label="السابق"><svg class="icon icon--sm icon--flip" aria-hidden="true"><use href="#i-angle-small-left"/></svg></button>
+        <button type="button" aria-current="page">1</button><button type="button">2</button><button type="button">3</button><button type="button" disabled>…</button><button type="button">43</button>
+        <button type="button" aria-label="التالي"><svg class="icon icon--sm icon--flip" aria-hidden="true"><use href="#i-angle-small-right"/></svg></button>
+      </nav>
+    </div>
+  </div>
+</section>
+
+<section id="upload" class="doc-sec">
+  <div class="doc-head">
+    <div class="doc-head__kicker">المكوّنات · 17</div>
+    <h2>الرفع</h2>
+    <p>منطقة إفلات تُضغط أيضاً (لوحة المفاتيح والجوال)، ثم صفّ لكل ملف بحالته. <b>التحقّق الحقيقي من النوع والحجم يتمّ على الخادم</b> — ما هنا للإرشاد فقط.</p>
+  </div>
+  <div class="grid-2">
+    <label class="dropzone" tabindex="0"><span class="dropzone__icon"><svg class="icon" aria-hidden="true"><use href="#i-cloud-upload"/></svg></span><b>اسحب ملفات الخط هنا</b><span>أو اضغط للاختيار · OTF، TTF، WOFF2 · حتى 20MB</span><input type="file" class="sr-only" accept=".otf,.ttf,.woff2" multiple></label>
+    <div class="stack" style="--stack-gap:var(--space-2)">
+      <div class="file-row"><span class="file-row__icon">OTF</span><div class="file-row__main"><b>Tajarib-Bold.otf</b><span>1.2 MB · Bold · 700</span></div><span class="badge badge--success badge--sm"><svg class="icon" aria-hidden="true" style="width:11px;height:11px"><use href="#i-check"/></svg>جاهز</span></div>
+      <div class="file-row"><span class="file-row__icon">TTF</span><div class="file-row__main"><b>Tajarib-Regular.ttf</b><span>جارٍ الرفع · 840 KB من 1.4 MB</span><div class="progress"><div class="progress__bar" style="--value:60%"></div></div></div><button class="btn btn--ghost btn--sm btn--icon" type="button" aria-label="إلغاء الرفع"><svg class="icon" aria-hidden="true"><use href="#i-cross-small"/></svg></button></div>
+      <div class="file-row file-row--error"><span class="file-row__icon">PDF</span><div class="file-row__main"><b>specimen.pdf</b><span>ليس ملف خط — احذفه أو استبدله</span></div><button class="btn btn--ghost btn--sm btn--icon" type="button" aria-label="حذف الملف"><svg class="icon" aria-hidden="true"><use href="#i-trash"/></svg></button></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ عرض البيانات ═══════════════ -->
+<section id="stat" class="doc-sec">
+  <div class="doc-head">
+    <div class="doc-head__kicker">عرض البيانات · 18</div>
+    <h2>بطاقات المؤشّرات</h2>
+    <p>الرقم أولاً وبأكبر مقاس، ثم ما يعنيه، ثم المقارنة. خطّ الاتجاه المصغّر يحكي الشكل لا القيم — القيم في الرسم الكامل.</p>
+  </div>
+  <div class="grid-4">
+    <div class="stat"><div class="stat__head"><svg class="icon" aria-hidden="true"><use href="#i-user"/></svg>الحسابات</div>
+      <div class="stat__value"><b>1,500</b><span class="delta delta--up">+1,465</span></div>
+      <div class="stat__foot">حساب جديد خلال 30 يوماً</div><div class="stat__chart" data-spark="2,3,3,4,6,9,15,40,90,160,260,420,640,900,1200,1500" data-color="var(--viz-1)"></div></div>
+    <div class="stat"><div class="stat__head"><svg class="icon" aria-hidden="true"><use href="#i-download"/></svg>التحميلات</div>
+      <div class="stat__value"><b>46,250</b><span class="delta delta--up">12%</span></div>
+      <div class="stat__foot">31 تحميلاً لكل حساب في المتوسّط</div><div class="stat__chart" data-spark="20,22,25,24,28,30,29,33,36,35,38,41,40,44,46" data-color="var(--viz-4)"></div></div>
+    <div class="stat"><div class="stat__head"><svg class="icon" aria-hidden="true"><use href="#i-crown"/></svg>الاشتراكات</div>
+      <div class="stat__value"><b>88</b><small>مشترك</small></div>
+      <div class="stat__foot">68 أساسية · 20 استوديو</div>
+      <div class="ticks" aria-hidden="true" style="--tick-color:var(--viz-3)"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      <div class="stat__foot" style="margin-top:6px">5.9% من الحسابات · الهدف 15%</div></div>
+    <div class="stat stat--zero"><div class="stat__head"><svg class="icon" aria-hidden="true"><use href="#i-dollar"/></svg>المبالغ المستردّة</div>
+      <div class="stat__value"><b>$0</b></div>
+      <div class="stat__foot">لا استرداد هذا الشهر — القيمة صفر فعلاً، لا بيانات ناقصة</div></div>
+  </div>
+</section>
+
+<section id="charts" class="doc-sec">
+  <div class="doc-head">
+    <div class="doc-head__kicker">عرض البيانات · 19</div>
+    <h2>الرسوم البيانية</h2>
+    <p>بطاقة الرسم: عنوان يقول <b>ماذا</b>، سطر يقول <b>متى وبأي وحدة</b>، ملخّص رقمي، ثم الرسم ومفتاحه. التحويم يعرض القيم الدقيقة، وجدول مخفي يقرؤها لقارئ الشاشة.</p>
+  </div>
+  <div class="dash-grid">
+    <div class="chart-card span-7">
+      <div class="card__head"><div class="card__title"><span class="card__icon"><svg class="icon" aria-hidden="true"><use href="#i-chart-histogram"/></svg></span><div><h3>الإيراد الشهري</h3><p>المبيعات مقابل الاشتراكات · بالدولار</p></div></div><span class="badge">لا يُجمعان</span></div>
+      <div class="chart-card__summary"><b>$4,300</b><span>أيلول · <span class="delta delta--up">+11%</span> عن آب</span></div>
+      <div class="chart" id="demoBar" style="--chart-h:240px"></div>
+      <ul class="legend"><li style="--c:var(--viz-1)"><i></i>المبيعات</li><li style="--c:var(--viz-3)"><i></i>الاشتراكات</li></ul>
+    </div>
+    <div class="chart-card span-5">
+      <div class="card__head"><div class="card__title"><span class="card__icon"><svg class="icon" aria-hidden="true"><use href="#i-chart-pie"/></svg></span><div><h3>توزيع الخطط</h3><p>1,500 حساب</p></div></div></div>
+      <div id="demoDonut"></div>
+      <div style="margin-top:var(--space-6)"><div class="split-bar" aria-hidden="true"><i style="--c:var(--viz-muted);flex:1412"></i><i style="--c:var(--viz-3);flex:68"></i><i style="--c:var(--viz-2);flex:20"></i></div>
+        <p class="t-xs t-tertiary" style="margin-top:var(--space-2)">5.9% فقط مدفوعون — الشريط يُظهر النسبة الحقيقية بلا تضخيم.</p></div>
+    </div>
+    <div class="chart-card span-8">
+      <div class="card__head"><div class="card__title"><span class="card__icon"><svg class="icon" aria-hidden="true"><use href="#i-pulse"/></svg></span><div><h3>النشاط اليومي</h3><p>زيارات · آخر 30 يوماً</p></div></div><span class="badge badge--info">ذروة 388</span></div>
+      <div class="chart" id="demoLine" style="--chart-h:220px"></div>
+      <ul class="legend legend--line"><li style="--c:var(--viz-1)"><i></i>زيارات <b>4,092</b></li><li style="--c:var(--text-tertiary)"><i style="background:repeating-linear-gradient(90deg,var(--text-tertiary) 0 4px,transparent 4px 7px)"></i>المتوسّط <b>136</b></li></ul>
+    </div>
+    <div class="chart-card span-4">
+      <div class="card__head"><div class="card__title"><span class="card__icon"><svg class="icon" aria-hidden="true"><use href="#i-star"/></svg></span><div><h3>الأكثر مبيعاً</h3><p>هذا الشهر</p></div></div></div>
+      <ol class="rank">
+        <li style="--w:100%"><span class="rank__n">1</span><span class="rank__name"><b>خطّ طفولة</b><span>ابن ثابت</span></span><span class="rank__val">$1,482<small>38 عملية</small></span><span class="rank__bar"><i></i></span></li>
+        <li style="--w:63%"><span class="rank__n">2</span><span class="rank__name"><b>Lyon Arabic</b><span>Kai Bernau</span></span><span class="rank__val">$931<small>19 عملية</small></span><span class="rank__bar"><i></i></span></li>
+        <li style="--w:45%"><span class="rank__n">3</span><span class="rank__name"><b>خطّ القصر</b><span>سعد النهدي</span></span><span class="rank__val">$672<small>21 عملية</small></span><span class="rank__bar"><i></i></span></li>
+      </ol>
+    </div>
+  </div>
+  <h3 class="doc-sub">حالات الرسم</h3>
+  <div class="grid-3">
+    <div class="chart-card"><div class="t-label">تحميل</div><div class="chart-skeleton" style="--chart-h:140px" aria-busy="true" aria-label="جارٍ تحميل الرسم"><span class="skeleton" style="height:40%"></span><span class="skeleton" style="height:70%"></span><span class="skeleton" style="height:55%"></span><span class="skeleton" style="height:90%"></span><span class="skeleton" style="height:65%"></span></div></div>
+    <div class="chart-card"><div class="t-label">فارغ</div><div class="chart-state" style="--chart-h:140px"><svg class="icon" aria-hidden="true"><use href="#i-chart-histogram"/></svg>لا مبيعات في هذه الفترة بعد</div></div>
+    <div class="chart-card"><div class="t-label">خطأ</div><div class="chart-state" style="--chart-h:140px;color:var(--danger-fg)"><svg class="icon" aria-hidden="true"><use href="#i-exclamation"/></svg>تعذّر التحميل<button class="btn btn--secondary btn--sm" type="button">أعد المحاولة</button></div></div>
+  </div>
+  <div class="dos">
+    <div class="do"><div class="do__show" style="flex-direction:column;align-items:stretch;gap:6px;width:100%"><div class="legend" style="margin:0"><span style="display:inline-flex;gap:6px;align-items:center"><i style="width:8px;height:8px;border-radius:2px;background:var(--viz-1)"></i>ديسكتوب</span><span style="display:inline-flex;gap:6px;align-items:center"><i style="width:8px;height:8px;border-radius:2px;background:var(--viz-2)"></i>موبايل</span></div></div>
+      <div class="do__txt"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><span>فئتان محايدتان = لونان من لوحة الرسوم بالترتيب.</span></div></div>
+    <div class="do do--no"><div class="do__show" style="flex-direction:column;align-items:stretch;gap:6px"><div class="legend" style="margin:0"><span style="display:inline-flex;gap:6px;align-items:center"><i style="width:8px;height:8px;border-radius:2px;background:var(--viz-1)"></i>ديسكتوب</span><span style="display:inline-flex;gap:6px;align-items:center"><i style="width:8px;height:8px;border-radius:2px;background:var(--harf-500)"></i>موبايل</span></div></div>
+      <div class="do__txt"><svg class="icon" aria-hidden="true"><use href="#i-cross-small"/></svg><span>الأحمر يوحي بأن «موبايل» مشكلة. لا أحمر لسلسلة عادية.</span></div></div>
+  </div>
+</section>
+
+<!-- ═══════════════ الأنماط ═══════════════ -->
+<section id="navbar" class="doc-sec">
+  <div class="doc-head">
+    <div class="doc-head__kicker">الأنماط · 20</div>
+    <h2>شريط التنقّل</h2>
+    <p>الشعار، ثم الروابط مقسّمة بفواصل (الخطوط · الأدوات · المزيد)، ثم عنقود الحساب: الخطة ← الإشعارات ← الصورة في الطرف. تحت 1024px تنتقل الروابط إلى دُرج جانبي.</p>
+  </div>
+  <div class="stage stage--plain" style="padding:0;overflow:hidden">
+    <header class="navbar navbar--static">
+      <div class="navbar__in">
+        <a class="navbar__brand" href="#navbar" aria-label="مكتبة حرف"><svg class="lockup" viewBox="0 0 1678.79 551.26" aria-hidden="true"><use href="#harf-lockup"/></svg><svg class="mark" viewBox="1127.53 0 551.26 551.26" aria-hidden="true"><use href="#harf-mark"/></svg></a>
+        <nav class="navbar__links" aria-label="التنقّل الرئيسي">
+          <a href="#navbar" aria-current="page">خطوط مجانية</a><a href="#navbar">خطوط مدفوعة</a><a href="#navbar">خطوط كردية</a><a href="#navbar">مخطوطات</a>
+          <span class="sep" aria-hidden="true"></span>
+          <a href="#navbar">مطابقة الخطوط</a><a href="#navbar">مختبر الخط</a><a href="#navbar">استوديو الخط</a>
+          <span class="sep" aria-hidden="true"></span>
+          <a href="#navbar">المدوّنة</a>
+        </nav>
+        <div class="navbar__actions">
+          <button class="navbar__plan" type="button"><svg class="icon" aria-hidden="true"><use href="#i-crown"/></svg>الخطة</button>
+          <button class="btn btn--ghost btn--icon" type="button" aria-label="الإشعارات، 3 غير مقروءة"><svg class="icon" aria-hidden="true"><use href="#i-bell"/></svg><span class="btn__count" aria-hidden="true">3</span></button>
+          <button class="btn btn--ghost btn--icon navbar__burger" type="button" aria-label="القائمة"><svg class="icon" aria-hidden="true"><use href="#i-menu-burger"/></svg></button>
+          <button class="navbar__user" type="button" aria-label="حساب عبدالملك جاسم"><span class="avatar" style="--av-bg:var(--harf-600);--av-fg:#fff">AJ</span></button>
+        </div>
+      </div>
+    </header>
+    <div style="height:120px;background:var(--bg-canvas)"></div>
+  </div>
+</section>
+
+<section id="fontcard" class="doc-sec">
+  <div class="doc-head">
+    <div class="doc-head__kicker">الأنماط · 21</div>
+    <h2>بطاقة الخط</h2>
+    <p>العيّنة تأخذ 3 أرباع البطاقة بنسبة 4:3 — من يتصفّح مكتبة خطوط يقرأ الخط لا البطاقة. تحتها ثلاثة أسطر فقط: الاسم والأوزان، المصمّم، السعر والفعل.</p>
+  </div>
+  <div class="grid-3">
+    <article class="font-card" style="--specimen-bg:linear-gradient(160deg,#1E1B2E,#2A1F3D);--specimen-fg:#F4F3F8">
+      <div class="font-card__specimen"><span class="sample">تجاريب</span><span class="meta">Tajarib · 5 weights</span>
+        <div class="font-card__badges"><span class="badge badge--success"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>مجاني</span></div>
+        <button class="btn btn--sm btn--icon font-card__fav" type="button" aria-label="أضف تجاريب إلى المفضّلة" data-toggle aria-pressed="false"><svg class="icon" aria-hidden="true"><use href="#i-heart" data-on="#i-heart-fill" data-off="#i-heart"/></svg></button></div>
+      <div class="font-card__body">
+        <div class="font-card__title"><h3>تجاريب</h3><span>5 أوزان</span></div>
+        <div class="font-card__by"><div class="avatar-group"><span class="avatar avatar--sm" style="--av-bg:var(--harf-100);--av-fg:var(--harf-700)">AJ</span><span class="avatar avatar--sm" style="--av-bg:var(--violet-100);--av-fg:var(--violet-700)">SN</span></div><span>تصميم <b>عبدالملك جاسم</b> و3 آخرين</span></div>
+        <div class="font-card__foot"><span class="price price--free">شخصي وتجاري</span><button class="btn btn--primary btn--sm" type="button"><svg class="icon" aria-hidden="true"><use href="#i-download"/></svg>تحميل</button></div>
+      </div>
+    </article>
+    <article class="font-card" style="--specimen-bg:linear-gradient(160deg,#FFF1E6,#FDE3D3);--specimen-fg:#3B1D0E">
+      <div class="font-card__specimen"><span class="sample" style="font-weight:300">Lyon عربي</span><span class="meta">Lyon Arabic Display · 6 weights</span>
+        <div class="font-card__badges"><span class="badge badge--info"><svg class="icon" aria-hidden="true"><use href="#i-time-fast"/></svg>تجريبي</span></div>
+        <button class="btn btn--sm btn--icon font-card__fav" type="button" aria-label="أضف Lyon Arabic إلى المفضّلة" data-toggle aria-pressed="false"><svg class="icon" aria-hidden="true"><use href="#i-heart" data-on="#i-heart-fill" data-off="#i-heart"/></svg></button></div>
+      <div class="font-card__body">
+        <div class="font-card__title"><h3>Lyon Arabic Display</h3><span>6 أوزان</span></div>
+        <div class="font-card__by"><span class="avatar avatar--sm" style="--av-bg:var(--blue-100);--av-fg:var(--blue-800)">KB</span><span>تصميم <b>Kai Bernau</b></span></div>
+        <div class="font-card__foot"><span class="price"><b>$49</b></span><div class="cluster" style="--cluster-gap:6px"><button class="btn btn--secondary btn--sm" type="button">جرّب</button><button class="btn btn--primary btn--sm" type="button">شراء</button></div></div>
+      </div>
+    </article>
+    <article class="font-card" style="--specimen-bg:linear-gradient(160deg,#E7F6EE,#D4EEDF);--specimen-fg:#0C2F1C">
+      <div class="font-card__specimen"><span class="sample">خطّ طفولة</span><span class="meta">Tufula · 3 weights</span>
+        <div class="font-card__badges"><span class="badge badge--warning"><svg class="icon" aria-hidden="true"><use href="#i-crown"/></svg>مدفوع</span></div>
+        <button class="btn btn--sm btn--icon font-card__fav" type="button" aria-label="إزالة خط طفولة من المفضّلة" data-toggle aria-pressed="true"><svg class="icon" aria-hidden="true"><use href="#i-heart-fill" data-on="#i-heart-fill" data-off="#i-heart"/></svg></button></div>
+      <div class="font-card__body">
+        <div class="font-card__title"><h3>خطّ طفولة</h3><span>3 أوزان</span></div>
+        <div class="font-card__by"><div class="avatar-group"><span class="avatar avatar--sm" style="--av-bg:var(--green-100);--av-fg:var(--green-800)">سن</span><span class="avatar avatar--sm" style="--av-bg:var(--amber-100);--av-fg:var(--amber-800)">مع</span></div><span>تصميم <b>سعد النهدي</b> وميس علي</span></div>
+        <div class="font-card__foot"><span class="price"><b>$39</b><s>$49</s></span><button class="btn btn--primary btn--sm" type="button">اختر الترخيص</button></div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section id="plans" class="doc-sec">
+  <div class="doc-head">
+    <div class="doc-head__kicker">الأنماط · 22</div>
+    <h2>الخطط</h2>
+    <p>الخطة المقترحة تتميّز بإطار حبر وشارة — لا بلون مختلف. المزايا المستبعدة تظهر باهتة بدل أن تختفي، حتى يرى المستخدم ما يكسبه بالترقية.</p>
+  </div>
+  <div class="plans" id="planGrid">
+    <div class="plan"><div><div class="plan__name"><svg class="icon" aria-hidden="true"><use href="#i-user"/></svg>مجاني</div><p class="plan__for">لتجربة المكتبة والخطوط المجانية.</p></div>
+      <div class="plan__price"><b>$0</b><span>للأبد</span></div>
+      <ul><li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>كل الخطوط المجانية</li><li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>10 تحميلات شهرياً</li><li class="is-off"><svg class="icon" aria-hidden="true"><use href="#i-cross-small"/></svg>مطابقة بالذكاء الاصطناعي</li><li class="is-off"><svg class="icon" aria-hidden="true"><use href="#i-cross-small"/></svg>ترخيص تجاري</li></ul>
+      <div class="plan__current">خطّتك الحالية</div></div>
+    <div class="plan plan--paid plan--featured"><span class="plan__tag badge badge--solid" style="--b-solid:var(--n-900)">الأكثر اختياراً</span>
+      <div><div class="plan__name"><svg class="icon" aria-hidden="true"><use href="#i-crown"/></svg>الأساسية</div><p class="plan__for">للمصمّم المستقلّ الذي يعمل على مشاريع عملاء.</p></div>
+      <div class="plan__price"><b>$5</b><span>شهرياً</span></div>
+      <ul><li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>تحميلات غير محدودة</li><li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>مطابقة بالذكاء — 50 شهرياً</li><li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>ترخيص تجاري للمجانية</li><li class="is-off"><svg class="icon" aria-hidden="true"><use href="#i-cross-small"/></svg>صفحة استوديو عامة</li></ul>
+      <button class="btn btn--primary btn--lg btn--block" type="button">اشترك في الأساسية</button></div>
+    <div class="plan plan--paid"><div><div class="plan__name"><svg class="icon" aria-hidden="true"><use href="#i-gem"/></svg>استوديو</div><p class="plan__for">للمسابك والمصمّمين الذين يبيعون خطوطهم.</p></div>
+      <div class="plan__price"><b>$25</b><span>شهرياً</span></div>
+      <ul><li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>كل ما في الأساسية</li><li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>بيع الخطوط والمخطوطات</li><li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>صفحة استوديو عامة</li><li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>لوحة تحليلات المبيعات</li></ul>
+      <button class="btn btn--secondary btn--lg btn--block" type="button">اشترك في الاستوديو</button></div>
+  </div>
+</section>
+
+<section id="auth" class="doc-sec">
+  <div class="doc-head">
+    <div class="doc-head__kicker">الأنماط · 23</div>
+    <h2>الدخول</h2>
+    <p>نموذج واحد قصير، بتسميات فوق الحقول وحقل كلمة مرور قابل للإظهار. رسالة الخطأ لا تكشف إن كان البريد مسجّلاً — «البريد أو كلمة المرور غير صحيحة».</p>
+  </div>
+  <div class="stage stage--canvas aura" style="display:grid;place-items:center;padding-block:var(--space-12)">
+    <div class="auth">
+      <div class="auth__head"><svg class="mark" viewBox="1127.53 0 551.26 551.26" aria-hidden="true"><use href="#harf-mark"/></svg><h2>مرحباً بعودتك</h2><p>ادخل لتكمل من حيث توقّفت.</p></div>
+      <form onsubmit="return false" novalidate>
+        <div class="field"><label class="field__label" for="a1">البريد الإلكتروني</label><div class="input input--lg"><input id="a1" type="email" autocomplete="email" placeholder="name@example.com"></div></div>
+        <div class="field"><div class="field__row"><label class="field__label" for="a2">كلمة المرور</label><a class="t-sm" href="#auth">نسيتها؟</a></div><div class="input input--lg"><input id="a2" type="password" autocomplete="current-password"></div></div>
+        <div class="alert alert--danger" role="alert"><svg class="icon" aria-hidden="true"><use href="#i-exclamation"/></svg><div class="alert__body">البريد أو كلمة المرور غير صحيحة.</div></div>
+        <button class="btn btn--primary btn--lg btn--block" type="submit">دخول</button>
+        <div class="auth__divider">أو</div>
+        <button class="btn btn--secondary btn--lg btn--block" type="button"><svg class="icon" aria-hidden="true"><use href="#i-envelope"/></svg>أرسل لي رابط دخول</button>
+      </form>
+      <p class="auth__foot">ليس لديك حساب؟ <a href="#auth">أنشئ حساباً مجانياً</a></p>
+    </div>
+  </div>
+</section>
+
+<section id="template" class="doc-sec">
+  <div class="doc-head">
+    <div class="doc-head__kicker">القوالب · 24</div>
+    <h2>قالب لوحة التحليلات</h2>
+    <p>صفحة كاملة مبنية من مكوّنات النظام وحدها — بلا نمط خاصّ بها. هي المرجع لكل لوحة قادمة: لوحة المصمّم، لوحة الاستوديو، ولوحة الإدارة.</p>
+  </div>
+  <div class="template-card">
+    <div>
+      <h3>التحليلات — لوحة الإدارة</h3>
+      <p>ثلاثة تبويبات (نظرة عامة، المستخدمون، المبيعات)، مؤشّرات مع اتجاهاتها، إيرادان منفصلان، رسوم تفاعلية، وجدول عمليات قابل للبحث.</p>
+      <ul><li>شبكة 12 عموداً تنهار بسلاسة حتى 360px</li><li>كل رسم بحالات التحميل والفراغ وبديل نصي</li><li>البيانات في كائن واحد — يُستبدل بمخرجات الـ API</li></ul>
+      <a class="btn btn--ink" href="dashboard.html">افتح القالب<svg class="icon icon--flip" aria-hidden="true"><use href="#i-angle-small-left"/></svg></a>
+    </div>
+    <div class="template-thumb" aria-hidden="true">
+      <div class="grid-4" style="gap:8px;grid-template-columns:repeat(4,1fr)"><div class="stat stat--compact" style="padding:10px"><div class="skeleton" style="height:8px;width:50%"></div><b class="t-num" style="font-size:16px;margin-top:6px">1,500</b></div><div class="stat stat--compact" style="padding:10px"><div class="skeleton" style="height:8px;width:50%"></div><b class="t-num" style="font-size:16px;margin-top:6px">2,232</b></div><div class="stat stat--compact" style="padding:10px"><div class="skeleton" style="height:8px;width:50%"></div><b class="t-num" style="font-size:16px;margin-top:6px">46,250</b></div><div class="stat stat--compact" style="padding:10px"><div class="skeleton" style="height:8px;width:50%"></div><b class="t-num" style="font-size:16px;margin-top:6px">88</b></div></div>
+      <div class="chart-card" style="padding:12px"><div class="chart-skeleton" style="--chart-h:90px;gap:6px"><span class="skeleton" style="height:30%;background:var(--viz-1);opacity:.35"></span><span class="skeleton" style="height:45%;background:var(--viz-1);opacity:.45"></span><span class="skeleton" style="height:38%;background:var(--viz-1);opacity:.5"></span><span class="skeleton" style="height:62%;background:var(--viz-1);opacity:.6"></span><span class="skeleton" style="height:78%;background:var(--viz-1);opacity:.75"></span><span class="skeleton" style="height:92%;background:var(--viz-1)"></span></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="rules" class="doc-sec">
+  <div class="doc-head">
+    <div class="doc-head__kicker">المرجع · 25</div>
+    <h2>قواعد الالتزام</h2>
+    <p>ما يتحقّق منه مراجع الكود قبل الدمج. كل قاعدة هنا مطبّقة في هذا الدليل نفسه.</p>
+  </div>
+  <ul class="changes">
+    <li><span>الألوان</span><div>لا لون سداسي ولا لون خام (<code>--blue-500</code>) داخل مكوّن — <b>الأدوار فقط</b>. الاستثناء الوحيد: خلفيات العيّنات في بطاقة الخط.</div></li>
+    <li><span>الفعل</span><div>زرّ أساسي واحد في كل قسم. لا تدرّج على زرّ أو نصّ أو شعار.</div></li>
+    <li><span>الحالة</span><div>لا حالة باللون وحده: أيقونة أو كلمة ترافقه دائماً.</div></li>
+    <li><span>المقاسات</span><div>المسافات من <code>--space-*</code>، والارتفاعات من <code>--control-h-*</code>، والحواف من <code>--radius-*</code>. رقم خارج السلّم يحتاج تعليقاً يشرح سببه.</div></li>
+    <li><span>الطباعة</span><div>لا نصّ تحت 12px. لا <code>letter-spacing</code> على العربية. الأرقام لاتينية، والقيم اللاتينية معزولة الاتجاه.</div></li>
+    <li><span>الاتجاه</span><div>خصائص منطقية فقط: <code>margin-inline-start</code> لا <code>margin-left</code>. الأسهم الاتجاهية بـ <code>.icon--flip</code>.</div></li>
+    <li><span>الإتاحة</span><div>كل زرّ أيقونة له <code>aria-label</code>. كل حقل له <code>&lt;label&gt;</code>. التركيز ظاهر دائماً. النصّ المتغيّر يُكتب بـ <code>textContent</code> لا <code>innerHTML</code>.</div></li>
+    <li><span>الحالات</span><div>كل مكوّن يعرض بيانات يُسلَّم بحالات: تحميل، فارغ، خطأ. والرقم الحقيقي في HTML — لا يعتمد ظهوره على السكربت.</div></li>
+  </ul>
+</section>
+
+</main>
+</div>
+
+<dialog class="dialog" id="dlgDelete" aria-labelledby="dlgDeleteT">
+  <div class="dialog__panel">
+    <div class="dialog__head"><span class="dialog__icon"><svg class="icon" aria-hidden="true"><use href="#i-trash"/></svg></span><div style="flex:1"><h2 id="dlgDeleteT">حذف «تجاريب» نهائياً؟</h2><p>سيختفي الخط من المكتبة ومن مفضّلة 214 مستخدماً. لا يمكن التراجع.</p></div></div>
+    <div class="dialog__body"><div class="field"><label class="field__label" for="dConfirm">اكتب <b>تجاريب</b> للتأكيد</label><div class="input"><input id="dConfirm" autocomplete="off"></div></div></div>
+    <div class="dialog__foot"><button class="btn btn--ghost" type="button" data-dialog-close>إلغاء</button><button class="btn btn--danger" type="button" id="dConfirmBtn" disabled data-dialog-close data-toast="حُذف الخط" data-toast-icon="i-trash">حذف نهائياً</button></div>
+  </div>
+</dialog>
+
+<dialog class="dialog dialog--lg" id="dlgPlans" aria-labelledby="dlgPlansT">
+  <div class="dialog__panel">
+    <div class="dialog__head"><div style="flex:1"><h2 id="dlgPlansT">اختر خطّتك</h2><p>غيّر أو ألغِ في أي وقت. الأسعار بالدولار الأمريكي.</p></div><button class="btn btn--ghost btn--icon" type="button" data-dialog-close aria-label="إغلاق"><svg class="icon" aria-hidden="true"><use href="#i-cross-small"/></svg></button></div>
+    <div class="dialog__body" id="dlgPlansBody"></div>
+  </div>
+</dialog>
+
+<script src="src/harf.js"></script>
+<script src="src/charts.js"></script>
+<script>
+/* ── سكربت الدليل فقط: يولّد العيّنات من الرموز الحيّة ── */
+(() => {
+  const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+  const css = getComputedStyle(document.documentElement);
+  const v = n => css.getPropertyValue(n).trim();
+  const mk = (tag, cls, txt) => { const e = document.createElement(tag); if (cls) e.className = cls; if (txt != null) e.textContent = txt; return e; };
+
+  // عدد الرموز الفعلي — يُحسب لا يُكتب
+  const tokenCount = [...document.styleSheets].flatMap(s => { try { return [...s.cssRules]; } catch { return []; } })
+    .filter(r => r.selectorText === ":root").reduce((n, r) => n + [...r.style].filter(p => p.startsWith("--")).length, 0);
+  $("#statTokens").textContent = tokenCount;
+
+  // سلالم الألوان
+  function lum(hex) { const c = hex.replace("#", "").match(/../g).map(x => parseInt(x, 16) / 255).map(x => x <= .04045 ? x / 12.92 : ((x + .055) / 1.055) ** 2.4); return .2126 * c[0] + .7152 * c[1] + .0722 * c[2]; }
+  function ramp(host, prefix, steps) {
+    steps.forEach(s => {
+      const hex = v(`--${prefix}-${s}`).toUpperCase();
+      const d = mk("div"); d.style.background = hex; d.style.color = lum(hex) > .4 ? "#1A1822" : "#fff";
+      d.append(mk("b", "", s), mk("span", "", hex)); host.append(d);
+    });
+  }
+  const S10 = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900];
+  ramp($("[data-ramp=harf]"), "harf", S10);
+  ramp($("[data-ramp=n]"), "n", [0, 25, 50, 100, 200, 300, 400, 500, 600, 700, 800, 900]);
+  const mr = $("#miniRamps");
+  [["green", "أخضر · نجاح"], ["amber", "كهرماني · تنبيه"], ["red", "أحمر · خطر"], ["blue", "أزرق · معلومة"], ["violet", "بنفسجي · ذكاء"], ["teal", "فيروزي · رسوم"], ["pink", "وردي · رسوم"]].forEach(([p, name]) => {
+    const row = mk("div", "rl"); const lab = mk("span", "", name.split(" · ")[0]); lab.title = name;
+    const r = mk("div", "ramp"); ramp(r, p, S10); row.append(lab, r); mr.append(row);
+  });
+
+  // جدول الأدوار: القيمة في الوضعين عبر عنصر مخفي بكل سمة
+  const probe = theme => { const d = mk("div"); d.style.cssText = "position:absolute;visibility:hidden"; d.style.colorScheme = theme; document.body.append(d); return d; };
+  const pl = probe("light"), pd = probe("dark");
+  const resolve = (el, name) => { el.style.color = `var(${name})`; return getComputedStyle(el).color; };
+  const ROLES = [
+    ["--bg-canvas", "خلفية الصفحة"], ["--bg-surface", "بطاقة، حقل، جدول"], ["--bg-raised", "قائمة، نافذة"], ["--bg-sunken", "مسار، مبدّل، حاوية داخلية"],
+    ["--text-primary", "النص الأساسي والعناوين"], ["--text-secondary", "نص داعم، وصف"], ["--text-tertiary", "بيانات وصفية، تسميات"], ["--text-disabled", "معطّل فقط — لا يحمل معلومة"],
+    ["--text-brand", "رابط نشط، عنصر مختار"], ["--border-default", "حدّ البطاقة"], ["--border-control", "حدّ الحقل وخانة الاختيار (3:1)"], ["--border-focus", "حلقة التركيز"],
+    ["--action-primary", "الزر الأساسي"], ["--action-ink", "زر الحبر، الاختيار المفعّل"], ["--selected-bg", "خلفية العنصر المختار"]
+  ];
+  const tb = $("#roleTable tbody");
+  ROLES.forEach(([n, use]) => {
+    const tr = mk("tr"); const c1 = mk("td"); c1.append(mk("code", "", n));
+    const c2 = mk("td"); const pair = mk("div", "swatch-pair");
+    [pl, pd].forEach(p => { const i = mk("i"); i.style.background = resolve(p, n); pair.append(i); }); c2.append(pair);
+    tr.append(c1, c2, mk("td", "desc", use)); tb.append(tr);
+  });
+
+  // بطاقات الحالات
+  const sc = $("#statusCards");
+  [["success", "نجاح", "منشور، مكتمل، مجاني"], ["warning", "تنبيه", "قيد المراجعة، مدفوع، رصيد منخفض"], ["danger", "خطر", "مرفوض، خطأ، حذف"], ["info", "معلومة", "تجريبي، قيد الرفع"], ["ai", "ذكاء اصطناعي", "اقتراح آلي — محجوز"], ["neutral", "محايد", "منتهي، مؤرشف"]].forEach(([k, name, use]) => {
+    const c = mk("div", "status-card"); c.style.cssText = `--s-bg:var(--${k}-bg);--s-fg:var(--${k}-fg);--s-solid:var(--${k}-solid)`;
+    const top = mk("div", "status-card__top"); top.append(mk("i"), document.createTextNode(name));
+    const body = mk("div", "status-card__body"); body.append(mk("code", "", `--${k}-bg · -fg · -solid`), mk("br"), document.createTextNode(use));
+    c.append(top, body); sc.append(c);
+  });
+
+  // لوحة الرسوم
+  const vs = $("#vizSwatches");
+  [1, 2, 3, 4, 5, 6].forEach(i => { const d = mk("span", "badge badge--outline"); const dot = mk("span", "badge__dot"); dot.style.cssText = `--b-solid:var(--viz-${i});width:10px;height:10px`; d.append(dot, document.createTextNode(`viz-${i}`)); d.classList.add("ltr"); vs.append(d); });
+  const hl = mk("span", "badge badge--outline ltr"); const hd = mk("span", "badge__dot"); hd.style.cssText = "--b-solid:var(--viz-highlight);width:10px;height:10px"; hl.append(hd, document.createTextNode("viz-highlight")); vs.append(hl);
+
+  // التباين الحيّ
+  function rgb(str) { const m = str.match(/[\d.]+/g).map(Number); return m.slice(0, 3); }
+  function L(c) { const [r, g, b] = c.map(x => x / 255).map(x => x <= .04045 ? x / 12.92 : ((x + .055) / 1.055) ** 2.4); return .2126 * r + .7152 * g + .0722 * b; }
+  function ratio(a, b) { const [x, y] = [L(a), L(b)].sort((m, n) => n - m); return (x + .05) / (y + .05); }
+  const probeNow = mk("div"); probeNow.style.cssText = "position:absolute;visibility:hidden"; document.body.append(probeNow);
+  const PAIRS = [["--text-primary", "--bg-canvas", "النص الأساسي"], ["--text-secondary", "--bg-canvas", "النص الثانوي"], ["--text-tertiary", "--bg-surface", "النص الثالثي"], ["--text-tertiary", "--bg-sunken", "الثالثي على غائر"],
+    ["--text-on-accent", "--action-primary", "نص الزر الأساسي"], ["--text-brand", "--bg-surface", "نص الهوية"], ["--success-fg", "--success-bg", "شارة النجاح"], ["--warning-fg", "--warning-bg", "شارة التنبيه"],
+    ["--danger-fg", "--danger-bg", "شارة الخطر"], ["--info-fg", "--info-bg", "شارة المعلومة"], ["--ai-fg", "--ai-bg", "شارة الذكاء"], ["--border-control", "--bg-surface", "حدّ الحقل (3:1)"]];
+  function drawContrast() {
+    const host = $("#contrast"); host.replaceChildren();
+    PAIRS.forEach(([fg, bg, name]) => {
+      const a = rgb(resolve(probeNow, fg)), bgc = rgb(resolve(probeNow, bg));
+      const r = ratio(a, bgc), need = fg === "--border-control" ? 3 : 4.5;
+      const d = mk("div"); d.style.background = `var(${bg})`; d.style.color = `var(${fg === "--border-control" ? "--text-primary" : fg})`;
+      const b = mk("b", "", r.toFixed(2) + ":1");
+      const badge = mk("span", "badge badge--sm " + (r >= need ? "badge--success" : "badge--danger"), r >= need ? "ناجح" : "راسب");
+      const left = mk("span"); left.append(b, document.createTextNode(" "), badge);
+      d.append(mk("span", "", name), left); host.append(d);
+    });
+  }
+  drawContrast(); document.addEventListener("harf:theme", () => requestAnimationFrame(drawContrast));
+
+  // سلّم الطباعة
+  const ts = $("#typeScale");
+  [["--text-display", "t-display", "الخطّ الحسن يزيد الحقّ وضوحاً", "600 · 1.2"], ["--text-h1", "t-h1", "أكبر مكتبة للخطوط العربية", "600 · 1.35"], ["--text-h2", "t-h2", "مطابقة الخطوط بالذكاء الاصطناعي", "600 · 1.35"], ["--text-h3", "t-h3", "الخطوط المنشورة", "600 · 20px"], ["--text-h4", "t-h4", "عنوان البطاقة", "500 · 17px"],
+   ["--text-lg", "t-lg", "الخطّ العربي فنٌّ قائم على التوازن بين الحرف والفراغ — نصّ القراءة الطويلة.", "400 · 17px · 1.7"], ["--text-md", "t-md", "نصّ الواجهة الافتراضي: الأزرار والحقول والقوائم.", "400 · 15px"], ["--text-sm", "t-sm", "نص ثانوي وخلايا الجداول — 5 أوزان · عربي · كردي", "400 · 13px"], ["--text-xs", "t-xs", "الحدّ الأدنى: الشارات ومحاور الرسوم", "500 · 12px"]]
+  .forEach(([tok, cls, sample, meta]) => {
+    const r = mk("div", "type-row"); const l = mk("div"); l.append(mk("code", "", tok), mk("small", "", meta));
+    r.append(l, mk("div", cls, sample)); ts.append(r);
+  });
+
+  // سلّم المسافات
+  const sp = $("#spaceScale");
+  [1, 2, 3, 4, 5, 6, 8, 10, 12, 16, 20, 24].forEach(n => {
+    const r = mk("div", "space-row"); const bar = mk("i"); bar.style.width = `var(--space-${n})`;
+    r.append(mk("code", "", `--space-${n}`), mk("span", "", v(`--space-${n}`)), bar); sp.append(r);
+  });
+
+  // الحركة
+  $$(".motion__card").forEach(c => c.addEventListener("click", () => {
+    const b = c.querySelector(".motion__ball"); b.style.transition = `inset-inline-start ${getComputedStyle(c).getPropertyValue("--d")} ${getComputedStyle(c).getPropertyValue("--e")}`;
+    c.classList.toggle("is-play");
+  }));
+
+  // شبكة الأيقونات — من الـ sprite نفسه
+  const ig = $("#iconGrid");
+  $$("symbol[id^='i-']").forEach(s => {
+    const b = mk("button"); b.type = "button"; b.title = "نسخ الاسم";
+    b.innerHTML = `<svg class="icon icon--lg" aria-hidden="true"><use href="#${s.id}"/></svg>`;   // s.id من الملف نفسه، ليس مدخلاً
+    b.append(mk("small", "", s.id));
+    b.addEventListener("click", () => { navigator.clipboard?.writeText(s.id); Harf.toast(`نُسخ ${s.id}`); });
+    ig.append(b);
+  });
+
+  // الجدول التوضيحي
+  const ORDERS = [["رؤى الشاذلي", "ر", "violet", "اشتراك الاستوديو", "sub", "قبل 5 ساعات", 25], ["Niro Kont", "N", "blue", "خطّ طفولة — العائلة", "sale", "قبل ساعتين", 39], ["Atheer Fadel", "A", "teal", "مصحف الأندلس", "refund", "أمس", -30], ["أحمد خميس", "أ", "amber", "اشتراك أساسي", "sub", "أمس", 5], ["Mohammed Ali", "M", "pink", "Lyon Arabic — وزنان", "sale", "قبل يومين", 49]];
+  const KIND = { sale: ["badge--info", "بيع"], sub: ["badge--warning", "اشتراك"], refund: ["badge--danger", "استرداد"] };
+  const tbody = $("#demoTable tbody");
+  ORDERS.forEach(([who, ini, col, item, kind, when, amt]) => {
+    const tr = mk("tr");
+    const c1 = mk("td"); const ent = mk("div", "cell-entity"); const av = mk("span", "avatar", ini); av.style.cssText = `--av-bg:var(--${col}-100);--av-fg:var(--${col}-800)`;
+    const nm = mk("div"); nm.append(mk("b", "", who)); ent.append(av, nm); c1.append(ent);
+    const c3 = mk("td"); c3.append(mk("span", "badge " + KIND[kind][0], KIND[kind][1]));
+    const c5 = mk("td", "num", (amt < 0 ? "−$" : "$") + Math.abs(amt)); if (amt < 0) c5.style.color = "var(--danger-fg)";
+    tr.append(c1, mk("td", "", item), c3, mk("td", "muted", when), c5); tbody.append(tr);
+  });
+
+  // الرسوم
+  Harf.charts.bar($("#demoBar"), { label: "الإيراد الشهري، المبيعات والاشتراكات", labels: ["نيسان", "أيار", "حزيران", "تموز", "آب", "أيلول"],
+    series: [{ name: "المبيعات", values: [1840, 2130, 1975, 2620, 3110, 3460], color: "var(--viz-1)" }, { name: "الاشتراكات", values: [520, 585, 640, 705, 780, 840], color: "var(--viz-3)" }],
+    format: x => "$" + x.toLocaleString("en-US"), axisFormat: x => "$" + (x >= 1000 ? x / 1000 + "k" : x) });
+  Harf.charts.donut($("#demoDonut"), { unit: "حساب", items: [{ label: "مجاني", value: 1412, color: "var(--viz-muted)" }, { label: "الأساسية", value: 68, color: "var(--viz-3)" }, { label: "استوديو", value: 20, color: "var(--viz-2)" }] });
+  const act = [42, 38, 55, 61, 48, 72, 90, 84, 102, 97, 88, 110, 126, 118, 140, 183, 142, 160, 155, 265, 388, 310, 180, 168, 155, 120, 110, 105, 112, 96];
+  const days = act.map((_, i) => { const d = new Date(2026, 7, 27 + i); return d.toLocaleDateString("ar", { day: "numeric", month: "long", numberingSystem: "latn" }); });
+  Harf.charts.line($("#demoLine"), { label: "النشاط اليومي خلال 30 يوماً", labels: days, ticks: [[0, days[0]], [7, days[7]], [14, days[14]], [21, days[21]], [29, days[29]]],
+    series: [{ name: "زيارات", values: act, color: "var(--viz-1)", area: true, markMax: true }, { name: "المتوسّط", values: act.map(() => 136), color: "var(--text-tertiary)", dashed: true }] });
+  $$("[data-spark]").forEach(e => Harf.charts.spark(e, e.dataset.spark.split(",").map(Number), e.dataset.color));
+
+  // تفاصيل تفاعلية صغيرة
+  $("#indet").indeterminate = true;
+  const pw = $("#pwToggle"), pwi = $("#f10");
+  pw.addEventListener("click", () => { const show = pwi.type === "password"; pwi.type = show ? "text" : "password"; pw.setAttribute("aria-label", show ? "إخفاء كلمة المرور" : "إظهار كلمة المرور"); pw.querySelector("use").setAttribute("href", show ? "#i-eye-crossed" : "#i-eye"); });
+  const ta = $("#f11"), tc = $("#f11c"); ta.addEventListener("input", () => { tc.textContent = `${ta.value.length} / 280`; });
+  const dc = $("#dConfirm"), db = $("#dConfirmBtn"); dc.addEventListener("input", () => { db.disabled = dc.value.trim() !== "تجاريب"; });
+  $("#dlgPlansBody").append($("#planGrid").cloneNode(true));
+
+  // تتبّع القسم الحالي في القائمة الجانبية
+  const links = $$(".doc-nav a"); const map = new Map(links.map(a => [a.getAttribute("href").slice(1), a]));
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { links.forEach(a => a.removeAttribute("aria-current")); map.get(e.target.id)?.setAttribute("aria-current", "true"); } }), { rootMargin: "-20% 0px -70% 0px" });
+  $$(".doc-sec").forEach(s => io.observe(s));
+})();
+</script>
+</body>
+</html>

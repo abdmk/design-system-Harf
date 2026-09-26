@@ -1,0 +1,241 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   نظام حرف للتصميم — الرموز (Tokens) · الإصدار 4.0
+   ───────────────────────────────────────────────────────────────────────
+   ثلاث طبقات، ولكل طبقة جمهور:
+     1. الألوان الخام  (--harf-500, --blue-600 …)  لا تُستخدم داخل المكوّنات.
+     2. الأدوار         (--bg-surface, --text-secondary, --success-fg …)
+                         هي ما تستخدمه المكوّنات، وهي وحدها تتغيّر بين الفاتح والداكن.
+     3. المكوّنات       (--control-h-md, --radius-control …) قرارات مشتركة.
+
+   الوضع الداكن معرَّف مرّة واحدة عبر light-dark() — لا كتل مكرّرة.
+   التبديل: <html data-theme="light|dark">، وبدونه يتبع إعداد النظام.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+:root{color-scheme:light dark}
+:root[data-theme="light"]{color-scheme:light}
+:root[data-theme="dark"]{color-scheme:dark}
+
+:root{
+/* ══ 1. الألوان الخام ═══════════════════════════════════════════════════ */
+
+/* حرف — لون الهوية. الشعار والعلامة على 500، والأفعال على 600 */
+--harf-50:#FFF4F4;--harf-100:#FFE3E3;--harf-200:#FFC8C9;--harf-300:#FCA0A2;--harf-400:#F56D70;
+--harf-500:#EC3B3C;--harf-600:#D22528;--harf-700:#AE1D20;--harf-800:#8C1A1C;--harf-900:#711819;
+
+/* المحايد — رمادي بارد بميل بنفسجي خفيف */
+--n-0:#FFFFFF;--n-25:#FCFCFD;--n-50:#F6F6F8;--n-100:#EFEEF2;--n-200:#E1E0E7;--n-300:#C9C7D2;
+--n-400:#9F9CAC;--n-500:#6B6779;--n-600:#5A5769;--n-700:#434052;--n-800:#292734;--n-900:#1A1822;--n-950:#0D0C12;
+/* المحايد الداكن — أرضيات الوضع الداكن */
+--d-0:#0B0A0F;--d-50:#141319;--d-100:#1C1A23;--d-200:#262330;--d-300:#322F3F;--d-400:#454154;
+--d-500:#8E8A9E;--d-600:#B3AFC0;--d-700:#E6E4EC;--d-800:#F4F3F8;
+
+/* السلالم الدلالية — مولّدة في OKLCH بخطوات إضاءة متساوية إدراكياً */
+--green-50:#E7F8EB;--green-100:#D0F2D8;--green-200:#A7E2B6;--green-300:#78CF92;--green-400:#4CBA73;
+--green-500:#22A55A;--green-600:#068D48;--green-700:#017239;--green-800:#005A2B;--green-900:#024521;
+--amber-50:#FEF4E8;--amber-100:#FEEBD5;--amber-200:#FFD9AC;--amber-300:#FFC47B;--amber-400:#FBB047;
+--amber-500:#F0A020;--amber-600:#CA8300;--amber-700:#9E6602;--amber-800:#794D00;--amber-900:#593700;
+--blue-50:#EBF4FE;--blue-100:#D7E9FF;--blue-200:#ADD2FF;--blue-300:#7FB8FE;--blue-400:#499DFF;
+--blue-500:#0A84F5;--blue-600:#0270D2;--blue-700:#005AAC;--blue-800:#01478A;--blue-900:#00376D;
+--violet-50:#EFEFFE;--violet-100:#DDDEFE;--violet-200:#BABBFF;--violet-300:#9794FE;--violet-400:#7966FF;
+--violet-500:#6233F5;--violet-600:#5624DD;--violet-700:#4818BE;--violet-800:#3B169E;--violet-900:#2F1580;
+--red-50:#FEEEED;--red-100:#FEDCD9;--red-200:#FFB7B1;--red-300:#FE8B83;--red-400:#F65A57;
+--red-500:#E0353A;--red-600:#C4212B;--red-700:#A4101E;--red-800:#850A16;--red-900:#6A0810;
+--teal-50:#E7F7F7;--teal-100:#CFF0EF;--teal-200:#A4DFDE;--teal-300:#74CCCB;--teal-400:#45B7B7;
+--teal-500:#0FA3A3;--teal-600:#038A8A;--teal-700:#016F6F;--teal-800:#015757;--teal-900:#044342;
+--pink-50:#FEEEF5;--pink-100:#FFDDEB;--pink-200:#FFB9D8;--pink-300:#FE8EC5;--pink-400:#F465B0;
+--pink-500:#E0469B;--pink-600:#C33284;--pink-700:#A1206B;--pink-800:#811655;--pink-900:#650F41;
+
+/* ══ 2. الأدوار — light-dark(فاتح، داكن) ═══════════════════════════════ */
+
+/* الأرضيات */
+--bg-canvas:  light-dark(var(--n-50),  var(--d-0));    /* خلفية الصفحة */
+--bg-surface: light-dark(var(--n-0),   var(--d-50));   /* بطاقة، حقل، جدول */
+--bg-raised:  light-dark(var(--n-0),   var(--d-100));  /* قائمة منسدلة، نافذة، تلميح */
+--bg-sunken:  light-dark(var(--n-100), var(--d-100));  /* مسار، مبدّل، حاوية داخلية */
+--bg-inset:   light-dark(var(--n-200), var(--d-200));  /* مسار أعمق، شريط تقدّم فارغ */
+--bg-hover:   light-dark(var(--n-100), var(--d-200));  /* حالة التحويم لعنصر شفاف */
+--bg-inverse: light-dark(var(--n-900), var(--n-50));
+--bg-scrim:   light-dark(rgb(13 12 18 / .42), rgb(0 0 0 / .62));
+
+/* النصوص — كلها تتجاوز 4.5:1 على canvas وsurface وsunken */
+--text-primary:   light-dark(var(--n-900), var(--d-800));
+--text-secondary: light-dark(var(--n-600), var(--d-600));
+--text-tertiary:  light-dark(var(--n-500), var(--d-500));
+--text-disabled:  light-dark(var(--n-400), var(--d-400));  /* معطّل فقط — لا يحمل معلومة */
+--text-inverse:   light-dark(var(--n-0),   var(--n-900));
+--text-brand:     light-dark(var(--harf-600), var(--harf-400));
+--text-link:      light-dark(var(--harf-600), var(--harf-300));
+--text-on-accent: #FFFFFF;
+
+/* الحدود */
+--border-subtle:  light-dark(var(--n-100), var(--d-100));  /* فواصل داخلية */
+--border-default: light-dark(var(--n-200), var(--d-300));  /* حدّ البطاقة */
+--border-strong:  light-dark(var(--n-300), var(--d-400));  /* تحويم، حدّ حقل */
+--border-control: light-dark(#928EA1,      #666279);       /* حدّ حقل/خانة اختيار — 3:1 على السطح (WCAG 1.4.11) */
+--border-focus:   light-dark(var(--n-900), var(--d-800));  /* التركيز بالحبر لا بالأحمر */
+
+/* الفعل */
+--action-primary:        light-dark(var(--harf-600), var(--harf-600));
+--action-primary-hover:  light-dark(var(--harf-700), var(--harf-500));
+--action-primary-active: light-dark(var(--harf-800), var(--harf-700));
+--action-secondary:        light-dark(var(--n-0),   var(--d-100));
+--action-secondary-hover:  light-dark(var(--n-50),  var(--d-200));
+--action-secondary-text:   light-dark(var(--n-800), var(--d-700));
+--action-secondary-border: light-dark(var(--n-200), var(--d-300));
+--action-ink:        light-dark(var(--n-900), var(--n-50));
+--action-ink-hover:  light-dark(var(--n-800), var(--n-0));
+--action-ink-text:   light-dark(var(--n-0),   var(--n-900));
+--selected-bg:   light-dark(var(--harf-50), rgb(236 59 60 / .14));
+--selected-fg:   var(--text-brand);
+
+/* الحالات — لكل حالة أربعة أدوار:
+   bg (صبغة) · fg (نص يقرأ على bg وعلى surface) · solid (أيقونة/نقطة/تعبئة) · border */
+--success-bg: light-dark(var(--green-50), rgb(34 165 90 / .16));
+--success-fg: light-dark(var(--green-700), var(--green-300));
+--success-solid: var(--green-500);
+--success-border: light-dark(var(--green-200), rgb(34 165 90 / .4));
+
+--warning-bg: light-dark(var(--amber-50), rgb(240 160 32 / .15));
+--warning-fg: light-dark(var(--amber-800), var(--amber-300));
+--warning-solid: var(--amber-500);
+--warning-border: light-dark(var(--amber-200), rgb(240 160 32 / .4));
+
+--danger-bg: light-dark(var(--red-50), rgb(224 53 58 / .16));
+--danger-fg: light-dark(var(--red-700), var(--red-300));
+--danger-solid: var(--red-600);
+--danger-border: light-dark(var(--red-200), rgb(224 53 58 / .45));
+
+--info-bg: light-dark(var(--blue-50), rgb(10 132 245 / .17));
+--info-fg: light-dark(var(--blue-700), var(--blue-300));
+--info-solid: var(--blue-500);
+--info-border: light-dark(var(--blue-200), rgb(10 132 245 / .42));
+
+--ai-bg: light-dark(var(--violet-50), rgb(98 51 245 / .2));
+--ai-fg: light-dark(var(--violet-600), var(--violet-300));
+--ai-solid: var(--violet-500);
+--ai-border: light-dark(var(--violet-200), rgb(98 51 245 / .45));
+
+--neutral-bg: var(--bg-sunken);
+--neutral-fg: var(--text-secondary);
+--neutral-solid: var(--n-400);
+--neutral-border: var(--border-default);
+
+/* دلالات المنتج — تُبنى على الحالات، لا ألوان جديدة */
+--tier-free:   var(--success-fg);   /* مجاني */
+--tier-paid-bg: var(--warning-bg);  /* مدفوع / اشتراك */
+--tier-paid-fg: var(--warning-fg);
+--tier-paid-solid: var(--amber-500);
+--trial-bg: var(--info-bg);         /* نسخة تجريبية = معلومة، لا تحذير */
+--trial-fg: var(--info-fg);
+--trial-solid: var(--info-solid);
+
+/* الرسوم البيانية — ترتيب ثابت للفئات. الأحمر محجوز للتمييز لا للسلسلة العادية */
+--viz-1: light-dark(var(--blue-500),   var(--blue-400));
+--viz-2: light-dark(var(--violet-500), var(--violet-400));
+--viz-3: light-dark(var(--amber-500),  var(--amber-400));
+--viz-4: light-dark(var(--teal-500),   var(--teal-400));
+--viz-5: light-dark(var(--pink-500),   var(--pink-400));
+--viz-6: light-dark(var(--green-500),  var(--green-400));
+--viz-highlight: var(--harf-500);
+--viz-muted: light-dark(var(--n-200), var(--d-300));
+--viz-grid:  light-dark(var(--n-100), var(--d-200));
+--viz-axis:  var(--text-tertiary);
+--viz-positive: var(--success-fg);
+--viz-negative: var(--danger-fg);
+
+/* التدرّجات — للأجواء الخلفية فقط، لا على زر ولا نص */
+--aurora-1: light-dark(#EC3B3C, #9E2427);
+--aurora-2: light-dark(#C563E8, #8A3C9E);
+--aurora-3: light-dark(#6233F5, #553BB8);
+--aurora-4: light-dark(#4C8DFF, #2B579C);
+--grad-aurora: linear-gradient(100deg,var(--aurora-1) 0%,var(--aurora-2) 45%,var(--aurora-3) 72%,var(--aurora-4) 100%);
+--grad-dawn: linear-gradient(135deg,light-dark(#FFE3E3,rgb(236 59 60 / .16)) 0%,light-dark(#FFF2EE,rgb(255 140 110 / .06)) 44%,light-dark(#EAE2FF,rgb(98 51 245 / .18)) 100%);
+
+/* ══ الطباعة ═══════════════════════════════════════════════════════════ */
+--font-ui:"Graphik Arabic",ui-sans-serif,system-ui,"Segoe UI",Tahoma,sans-serif;
+--font-mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace;
+
+/* سلّم عربي: لا نصّ تحت 12px. العناوين مرنة، والنص ثابت لأن القراءة لا تتغيّر بعرض الشاشة */
+--text-display: clamp(36px,4.4vw,56px);
+--text-h1: clamp(28px,3vw,40px);
+--text-h2: clamp(22px,2vw,28px);
+--text-h3: 20px;
+--text-h4: 17px;
+--text-lg: 17px;   /* نصّ قراءة: وصف خط، مقالة */
+--text-md: 15px;   /* نصّ الواجهة الافتراضي */
+--text-sm: 13px;   /* نص ثانوي، خلايا الجدول الكثيفة */
+--text-xs: 12px;   /* الحدّ الأدنى: شارات، محاور الرسوم، تسميات */
+/* أرقام المؤشّرات — لاتينية جدولية */
+--num-xl: clamp(28px,2.6vw,34px);
+--num-lg: 24px;
+
+--leading-none: 1;       /* عناصر أحادية السطر: زر، شارة، حقل */
+--leading-tight: 1.2;    /* أرقام وعناوين عرض */
+--leading-heading: 1.35;
+--leading-body: 1.7;
+
+--weight-light: 300;
+--weight-regular: 400;
+--weight-medium: 500;
+--weight-semibold: 600;
+
+--tracking-tight: -.01em;   /* للأرقام والعناوين اللاتينية فقط */
+
+/* ══ المسافات — أساس 4 ════════════════════════════════════════════════ */
+--space-0:0;--space-1:4px;--space-2:8px;--space-3:12px;--space-4:16px;--space-5:20px;
+--space-6:24px;--space-8:32px;--space-10:40px;--space-12:48px;--space-16:64px;--space-20:80px;--space-24:96px;
+--page-gutter: clamp(16px,3.4vw,40px);
+--section-gap: clamp(48px,5vw,80px);
+--container-max: 1440px;
+
+/* ══ المقاسات ═════════════════════════════════════════════════════════ */
+/* ثلاثة ارتفاعات فقط، يتشاركها الزر والحقل والمبدّل حتى تتحاذى في صف واحد */
+--control-h-sm: 32px;
+--control-h-md: 40px;
+--control-h-lg: 48px;
+--icon-sm: 16px;
+--icon-md: 20px;
+--icon-lg: 24px;
+
+/* ══ الحواف ═══════════════════════════════════════════════════════════ */
+/* قاعدة التداخل: حافة الداخل = حافة الخارج − الحشوة */
+--radius-xs: 6px;     /* خانة اختيار، شارة مربّعة */
+--radius-sm: 8px;     /* عناصر صغيرة داخل حاوية */
+--radius-md: 12px;    /* أزرار، حقول، قوائم */
+--radius-lg: 16px;    /* بطاقات */
+--radius-xl: 24px;    /* ألواح، نوافذ */
+--radius-pill: 999px; /* شرائح، مبدّلات، صور شخصية */
+
+/* ══ العمق ════════════════════════════════════════════════════════════ */
+--shadow-a: light-dark(rgb(26 24 34 / .05), rgb(0 0 0 / .5));
+--shadow-b: light-dark(rgb(26 24 34 / .08), rgb(0 0 0 / .6));
+--rim: light-dark(inset 0 0 0 0 transparent, inset 0 1px 0 rgb(255 255 255 / .06));
+--shadow-1: 0 1px 2px var(--shadow-a);
+--shadow-2: 0 1px 2px var(--shadow-a), 0 4px 10px var(--shadow-a);
+--shadow-3: 0 2px 4px var(--shadow-a), 0 10px 24px var(--shadow-b);
+--shadow-4: 0 4px 8px var(--shadow-a), 0 20px 48px var(--shadow-b);
+
+/* حلقة التركيز: فجوة بلون الأرضية ثم خطّ حبر — تُرى على أي خلفية ولا تشبه الخطأ */
+--focus-ring: 0 0 0 2px var(--bg-surface), 0 0 0 4px var(--border-focus);
+
+/* ══ الحركة ═══════════════════════════════════════════════════════════ */
+--duration-instant: 80ms;
+--duration-fast: 140ms;
+--duration-base: 220ms;
+--duration-slow: 360ms;
+--ease-out: cubic-bezier(.2,0,0,1);
+--ease-in-out: cubic-bezier(.4,0,.2,1);
+--ease-spring: cubic-bezier(.34,1.4,.64,1);
+
+/* ══ الطبقات ══════════════════════════════════════════════════════════ */
+--z-raised: 1;
+--z-sticky: 100;
+--z-dropdown: 200;
+--z-overlay: 300;
+--z-modal: 400;
+--z-toast: 500;
+--z-tooltip: 600;
+}
+
+/* نقاط الانكسار (ثوابت — CSS لا يقبل متغيّرات داخل @media):
+   sm 640 · md 768 · lg 1024 · xl 1280 · 2xl 1440 */
